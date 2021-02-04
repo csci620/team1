@@ -1,0 +1,131 @@
+const db = require("../models");
+const User = db.users;
+
+exports.create = (req, res) => {
+    // Validate request
+    if (!req.body.fName) {
+      res.status(400).send({ message: "Content can not be empty!" });
+      return;
+    }
+
+    // Create a Hotel
+    const users = new User({
+
+      
+      fName: req.body.fName,
+      lName: req.body.lName,
+      custAddress: req.body.custAddress,
+      join_date: new Date(req.body.join_date),
+    
+      
+    });
+
+    // Save Hotel in the database
+    users
+      .save(users)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while creating the hotel."
+        });
+      });
+  };
+
+  exports.findAll = (req, res) => {
+    const fName = req.query.fName;
+    const custAddress = req.query.custAddress;
+    var condition = fName ? { fName: { $regex: new RegExp(fName), $options: "i" } } : {};
+
+    User.find({ $or: [{fName: condition}, {custAddress: custAddress}]})
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving User."
+        });
+      });
+  };
+
+  exports.findOne = (req, res) => {
+    const id = req.params.id;
+
+    User.findById(id)
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Not found User with id " + id });
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving User with id=" + id });
+      });
+  };
+
+  exports.update = (req, res) => {
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+
+    const id = req.params.id;
+
+    User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update User with id=${id}. Maybe User was not found!`
+          });
+        } else res.send({ message: "User was updated successfully." });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating User with id=" + id
+        });
+      });
+  };
+
+  exports.delete = (req, res) => {
+    const id = req.params.id;
+
+    User.findByIdAndRemove(id)
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot delete Hotel with id=${id}. Maybe User was not found!`
+          });
+        } else {
+          res.send({
+            message: "User was deleted successfully!"
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Could not delete User with id=" + id
+        });
+      });
+  };
+
+  exports.deleteAll = (req, res) => {
+    User.deleteMany({})
+      .then(data => {
+        res.send({
+          message: `${data.deletedCount} Users were deleted successfully!`
+        });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while removing all Users."
+        });
+      });
+  };
+
+  
