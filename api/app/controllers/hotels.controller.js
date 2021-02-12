@@ -7,7 +7,7 @@ exports.create = (req, res) => {
       res.status(400).send({ message: "Content can not be empty!" });
       return;
     }
-
+    console.log("hotel phone => " + req.body.hotelPhone);
     // Create a Hotel
     const hotel = new Hotel({
 
@@ -23,9 +23,11 @@ exports.create = (req, res) => {
     });
 
     // Save Hotel in the database
+    console.log("hotel curr => " + hotel.hotelPriceCurr);
     hotel
       .save(hotel)
       .then(data => {
+        console.log("success....");
         res.send(data);
       })
       .catch(err => {
@@ -37,12 +39,14 @@ exports.create = (req, res) => {
   };
 
   exports.findAll = (req, res) => {
-    const hotelName = req.query.hotelName;
-    const hotelAddr = req.query.hotelAddr;
-    var condition = hotelName ? { hotelName: { $regex: new RegExp(hotelName), $options: "i" } } : {};
+   // const hotelName = req.query.hotelName;
+    //const hotelAddr = req.query.hotelAddr;
+   // console.log("hotelName findall()=> " + hotelName);
+    //var condition = hotelName ? { hotelName: { $regex: new RegExp(hotelName), $options: "i" } } : {};
 
-    Hotel.find({ $or: [{hotelName: condition}, {hotelAddr: hotelAddr}]})
+    Hotel.find({})
       .then(data => {
+        console.log(data);
         res.send(data);
       })
       .catch(err => {
@@ -116,6 +120,7 @@ exports.create = (req, res) => {
   };
 
   exports.deleteAll = (req, res) => {
+    
     Hotel.deleteMany({})
       .then(data => {
         res.send({

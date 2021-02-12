@@ -4,7 +4,7 @@ module.exports = app => {
     var router = require("express").Router();
 
     // Create a new hotels
-    router.post("/create", hotels.create);
+    router.post("/", hotels.create);
 
     // Retrieve all hotels
     router.get("/", hotels.findAll);
@@ -22,7 +22,7 @@ module.exports = app => {
     router.delete("/:id", hotels.delete);
 
     // Create a new hotels
-    router.delete("/delete", hotels.deleteAll);
+    router.delete("/", hotels.deleteAll);
 
     app.use('/api/hotels', router);
   };
