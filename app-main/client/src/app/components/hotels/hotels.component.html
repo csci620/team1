@@ -1,0 +1,82 @@
+<div class="container">
+
+    <form (submit)="addHotels()" >
+        <div class="form-group">
+            <label>Hotel Name</label>
+            <input type="text" [(ngModel)]="hotel.hotelName" name="hotelName" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label>Hotel Address</label>
+            <input type="text" [(ngModel)]="hotel.hotelAddr" name="hotelAddr" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label>Hotel Price per Day</label>
+            <input type="text" [(ngModel)]="hotel.hotelPricePerDay" name="hotelPricePerDay" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label>Hotel Currency</label>
+            <input type="text" [(ngModel)]="hotel.hotelPriceCurr" name="hotelPriceCurr" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label>Hotel Phone</label>
+            <input type="text" [(ngModel)]="hotel.hotelPhone" name="hotelPhone" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label>Hotel Email</label>
+            <input type="text" [(ngModel)]="hotel.hotelEmail" name="hotelEmail" class="form-control"/>
+
+        </div>
+        <div class="form-group">
+            <label>Hotel Reservation</label>
+            <input type="text" [(ngModel)]="hotel.isBooked" name="isBooked" class="form-control"/>
+
+        </div>
+        <input type="submit" value="Save" class="btn btn-success" />
+
+    </form>
+    
+</div>
+    <div class="container">
+        <table class="table  table-hover">
+            
+              <tr>
+                <th scope="col">Hotel Name</th>
+                <th scope="col">Hotel Price/ Day</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+                <th scope="col"><button (click)="deleteAll()">Delete All</button></th>
+              </tr>
+            
+        
+           
+                
+                 <tr *ngFor="let hotel of hotels">
+                   
+                    <td ><input type="text" [(ngModel)]="hotel.hotelName" name="hotelName" value="{{hotel.hotelName}}"/> </td>
+                    <td><input type="text" [(ngModel)]="hotel.hotelPriceCurr" name="hotelPriceCurr" value="{{hotel.hotelPriceCurr}}"/></td>
+                    <td>{{hotel.hotelPhone}}</td>
+                    <td>{{hotel.hotelEmail}}</td>
+                    <td class="vcenter"> <button (click)="deleteHotel(hotel._id)">Delete</button>&nbsp; <button (click)="updateHotel(hotel._id, hotel)">Update</button>  
+                        
+                
+                    </tr>
+
+          
+            
+                
+            
+            
+
+        
+          </table>
+         
+    </div>
+
+
+    
