@@ -1,36 +1,22 @@
-# WanderLust 
+#CSCI620-Assignment -5 Testing.
 
-Program by : Jayesh Sathe (jgsathe@mail.csuchico.edu)
-			Viraj Sonavane (vdsonavane@mail.csuchico.edu)
-			Aadhar Jaiswal	(ajaiswal@mail.csuchico.edu)
+Program by : Jayesh Sathe 
              
 ------------------------------------------------------------------------------------------------------------------------------------
-## Overview
+# Overview
+Testing hotel api using  mocha, supertest, chai
 
-High level overview for Development of travel recommendation application based on current weather conditions.
-- Provision of real time alerts based on the climatic conditions.
-- This also covers other features like Things to do, Hotels, Restaurants, Blogger's feedback videos, Reviews.
+# input 
+1) npm install  mocha supertest chai --save-dev
+2) npm install -g mocha
+3) Update package.json 
+  "scripts": {
+    "test": "mocha"
+  },
+4) Create test- dir under api- package.
+5) Create hotels.test.js under 'test' package.
+6) run the command for testing 
+- npm test or mocha
 
-
-## External Resources
-
-Packages used as below,
-- MEAN stack 
-- Docker containerization
-- GCP/Azure
-
-## Third party libraries
- -  Real time weather API.
- - plugins for video upload.
- - Graphic trend plugins.
-
-## Reference 
-
-#TO-Do
-
-
-## Environment
-
-- Programs compiled and executed on Microsoft Windows 10 
-- Installed <npm package name> installation
-- and <npm package name>- for Apple macOS 
+# Output 
+Runs CRUD requests for hotels api and returns whether test is passing or fails.
