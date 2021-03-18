@@ -2479,7 +2479,7 @@ textarea.form-input {
 		position: relative;
 	}
 	.form-inline-search .form-inline-item:nth-child(3):after {
-		content: '→';
+		
 		position: absolute;
 		top: 50%;
 		left: -10px;

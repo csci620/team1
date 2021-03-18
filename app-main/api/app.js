@@ -3,11 +3,27 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var path = require("path");
 var cors = require("cors");
-
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
 
 
 const app = express();
+
+
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://jgsathe.us.auth0.com/.well-known/jwks.json'
+}),
+audience: 'https://localhost:3000/dashboard',
+issuer: 'https://jgsathe.us.auth0.com/',
+algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
 
 const db = require("./app/models");
 db.mongoose
@@ -23,6 +39,12 @@ db.mongoose
     process.exit();
   });
 
+
+  app.use("/images", express.static(path.join("images")));  
+  app.use("/js", express.static(path.join("js"))); 
+  app.use("/css", express.static(path.join("css"))); 
+  app.use("/fonts", express.static(path.join("fonts")));
+  
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
