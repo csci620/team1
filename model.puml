@@ -1,0 +1,93 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "user_details" as e01 {
+  *user_id : number <<generated>>
+         
+  --
+          fName: text
+          lName: text
+          custAddress: text
+          custPhn: number
+          join_date: Date
+}
+
+entity "trip_itinerary" as e02 {
+  *tpid: number <<generated>>
+  --
+  *venue: number <<PK>>
+  user_id : number <<FK>>
+  
+  locations_fk: number <<FK>>
+  
+   
+
+  other_details : text
+}
+
+entity "locations" as e03 {
+  *tpid: number <<generated>>
+  --
+  location_id: number <<PK>>
+  location: text
+  other_details : text
+}
+
+entity "hotels" as e04 {
+  *h_id : number <<generated>>
+  --
+  city_id: locations <FK>>
+  hotelName: text,
+  hotelAddr: text,
+  hotelPricePerDay: text,
+  hotelPriceCurr: text,
+  hotelPhone: number,
+  hotelEmail: text,
+  isBooked: boolean
+         
+}
+entity "visit_places" as e05 {
+  *oplaces_id : number <<generated>>
+  --
+  city_id: locations <FK>>
+  reviews: text
+  
+  
+         
+}
+
+entity "reviews" as e06 {
+  *review_id: number <<generated>>
+  --
+  user_id: user_details<FK>>
+  city_id: locations <FK>>
+  comments: text
+  views: text
+  
+  
+         
+}
+entity "photos_desc" as e07{
+
+  --
+  user_id: user_details<FK>>
+  city_id: locations <FK>>
+  views: text
+  
+  
+         
+}
+
+e01 ||..|{ e02
+e02 ||..|{ e03
+e03 ||..|{ e04
+e03 ||..|{ e05
+e01 ||..|{ e06
+e01 ||..|{ e07
+e03 }|..|{ e07
+e03 }|..|{ e07
+@enduml
