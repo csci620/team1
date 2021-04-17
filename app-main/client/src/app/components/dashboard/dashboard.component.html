@@ -476,8 +476,33 @@
         </div><!--/.single-travel-box-->
       </div><!--/.col-->
     </div><!--/.row-->
+    <div class="row">
+      <div class="col-md-12">
+
+        <table>
+          <thead>
+              <th>Tourist Attractions nearby which have a Clear Sky - </th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let filtered_place of filtered_places">
+                  <div>Place Name - {{filtered_place.name}}</div>
+                  <div *ngFor="let photo of filtered_place.photos">
+                    <div><img src="{{photo}}"/></div>
+
+                  </div>
+                  <div *ngFor="let review of filtered_place.reviews">
+                    <div>Reviewer Name - {{review.author_name}}</div>
+<div> Review - {{review.text}}</div>
+<div> <img src="{{review.profile_photo_url}}"/></div>
+                  </div>
+
+                
+              </tr>
+          </tbody>
+      </table>
+
+        </div></div>
   </div><!--/.container-->
 
 </section><!--/.travel-box-->
 <!--travel-box end-->
-
