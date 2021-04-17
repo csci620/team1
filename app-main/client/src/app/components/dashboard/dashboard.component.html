@@ -452,6 +452,7 @@
           </h2>  
       </div>
       <ng-template #loaded>
+      
         <table >
           <thead>
               <th>Tourist Attractions nearby which have a Clear Sky - </th>
@@ -460,16 +461,14 @@
               <tr *ngFor="let filtered_place of filtered_places">
                   <div>Place Name - {{filtered_place.name}}</div>
                   <div *ngFor="let photo of filtered_place.photos">
-                    <div><img src="{{photo}}"/></div>
-
+                    <div><img src="{{photo}}"/></div> 
                   </div>
                   <div *ngFor="let review of filtered_place.reviews">
                     <div>Reviewer Name - {{review.author_name}}</div>
-<div> Review - {{review.text}}</div>
-<div> <img src="{{review.profile_photo_url}}"/></div>
+                    <div> Review - {{review.text}}</div>
+                    <div> Rating - {{review.rating}}</div>
+                    <div> <img src="{{review.profile_photo_url}}"/></div>
                   </div>
-
-                
               </tr>
           </tbody>
       </table>
@@ -480,3 +479,19 @@
 
 </section><!--/.travel-box-->
 <!--travel-box end-->
+<div ng-controller="my">
+  <table border = "1">
+    <tr>
+      <th>Name</th>
+      <th>Rating</th>
+      <th>Photo</th>
+    </tr>
+    <tr *ngFor="let filtered_place of filtered_places">
+      <div *ngFor="let review of filtered_place.reviews">
+        <td>{{review.author_name}}</td>
+        <td>{{review.rating}}</td>
+        <td><img src="{{review.profile_photo_url}}"></td> 
+      </div>
+    </tr>
+  </table>
+</div>

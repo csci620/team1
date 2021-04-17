@@ -1,0 +1,15 @@
+<div>
+    <div class="container">
+        <br>
+        <input #find type="text" placeholder="Discover..." required>
+        <br><br>
+        <button class=" btn btn-dark"(click)="getData()"><h3>Search</h3></button>
+        <br><br>
+        <ul *ngFor= "let video of videos">
+            <a href="https://www.youtube.com/embed/{{video.id.videoId}}">
+            <img class="img-thumbnail" width="900px" height=500px src="{{video.snippet.thumbnails.high.url}}">
+            </a>
+        </ul>
+    </div>   
+</div>
+

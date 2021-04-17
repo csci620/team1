@@ -24,6 +24,8 @@ import { AuthenticateButtonComponent } from './components/authenticate-button/au
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { AgmCoreModule } from '@agm/core';
 import { FlightsComponent } from './components/flights/flights.component';
+import { WanderlustComponent } from './components/wanderlust/wanderlust.component';
+import { YoutubeComponent } from './components/youtube/youtube.component';
 
 
 
@@ -45,7 +47,11 @@ import { FlightsComponent } from './components/flights/flights.component';
     
     SignupButtonComponent,
     
-    FlightsComponent
+    FlightsComponent,
+    
+    WanderlustComponent,
+    
+    YoutubeComponent
   ],
   imports: [
     BrowserModule,

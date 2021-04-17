@@ -7,6 +7,8 @@ import { AuthenticateButtonComponent } from './components/authenticate-button/au
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent} from './components/logout-button/logout-button.component';
 import {FlightsComponent} from './components/flights/flights.component'
+import {WanderlustComponent} from './components/wanderlust/wanderlust.component'
+import {YoutubeComponent} from './components/youtube/youtube.component'
 
 const routes: Routes = [ 
 { path: 'home', component: HomeComponent},
@@ -16,7 +18,9 @@ const routes: Routes = [
 { path: 'login', component: LoginButtonComponent },
 { path: 'logout', component: LogoutButtonComponent },
 { path: 'authenticate', component: AuthenticateButtonComponent },
-{ path: 'flight', component: FlightsComponent}
+{ path: 'flight', component: FlightsComponent},
+{ path: 'wanderlust', component:WanderlustComponent},
+{ path: 'vlog',component:YoutubeComponent}
 
 ];
 
