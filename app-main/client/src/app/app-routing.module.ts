@@ -6,16 +6,17 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthenticateButtonComponent } from './components/authenticate-button/authenticate-button.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent} from './components/logout-button/logout-button.component';
-
+import {FlightsComponent} from './components/flights/flights.component'
 
 const routes: Routes = [ 
-  { path: 'home', component: HomeComponent},
+{ path: 'home', component: HomeComponent},
 { path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'dashboard', component: DashboardComponent},
 { path: 'hotels', component: HotelsComponent },
 { path: 'login', component: LoginButtonComponent },
 { path: 'logout', component: LogoutButtonComponent },
-{ path: 'authenticate', component: AuthenticateButtonComponent }
+{ path: 'authenticate', component: AuthenticateButtonComponent },
+{ path: 'flight', component: FlightsComponent}
 
 ];
 

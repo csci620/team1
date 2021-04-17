@@ -22,7 +22,7 @@ body{
   position: relative;
 font-size:14px;
 color: #222222;
-background: #fff;
+background: rgb(241, 229, 229);
 font-family: 'Poppins', sans-serif;
   max-width:1920px;
   margin:0 auto;
@@ -42,13 +42,17 @@ padding:0;
 
 }
 
-h1,h2,h3,h4,h5,h6 { 
+h2,h3,h4,h5,h6 { 
 
 margin: 0;
 color:#222222;
 text-transform: capitalize;
-
 }
+
+h1{
+  color: rgb(243, 227, 214);
+}
+
 
 p {
 
@@ -71,9 +75,7 @@ padding: 0;
 ul li {
 
 list-style: none;
-
-
-
+font-weight: bold;
 }
 
 select,input,textarea,button{box-shadow:none;outline:0!important;}
@@ -115,8 +117,9 @@ opacity: 0;
   position: relative;
   z-index: -1;
 }
+
 .header-area{
-  position:relative;
+  position:fixed;
   width: 100%;
 }
 
@@ -126,10 +129,8 @@ opacity: 0;
   z-index: 2;
   transition:.7s;
 }
-.is-sticky .header-area{
 
-}
-.is-sticky .header-area:after{
+.is-sticky{
   position:absolute;
   content:'';
   background: rgba(77,78,84,1);
@@ -150,7 +151,7 @@ opacity: 0;
 
 /*.logo*/
 .logo a, .logo a:hover, .logo a:focus{
-  color: #fff;
+  color: rgb(184, 38, 38);
   font-size:24px;
   font-family: 'Poppins', sans-serif;
   text-transform: capitalize;
@@ -158,10 +159,7 @@ opacity: 0;
   margin: 14px 0px 0;
   padding: 10px 0 0 0;
 }
-.logo a span{
-  color: #00d8ff;
-  text-transform: capitalize;
-}
+
 
 /*.logo*/
 
@@ -170,10 +168,13 @@ opacity: 0;
 .main-menu ul .nav .navbar-nav {
   text-align:right;
   float:none;
+  align-items: center;
+  justify-self:left
 }
+
 .main-menu .nav li {
   position:relative;
-  padding: 16px 12px 0px;
+  padding: 23px 13px 4px;
   -webkit-transition:all 0.2s linear;
   -moz-transition:all 0.2s linear;
   -ms-transition:all 0.2s linear;
@@ -181,21 +182,22 @@ opacity: 0;
   transition: all 0.2s linear;
 }
 .main-menu .nav li a{
-  padding: 11px 0 29px;
-  color: #fff;
+  padding: 11px 3px 29px;
+  color: rgb(248, 245, 245);
   font-size: 16px;
   text-transform: capitalize;
   font-family: 'Poppins', sans-serif;
-  font-weight:500;
+  font-weight:bold;
   -webkit-transition: all 0.25s ease-in-out 0s;
   -moz-transition: all 0.25s ease-in-out 0s;
   -o-transition: all 0.25s ease-in-out 0s;
   transition: all 0.25s ease-in-out 0s;
+  justify-self: ;
 }
 .main-menu  .nav  li.active a,
 .main-menu  .nav  li a:hover,
 .main-menu .nav  li a:focus{
-  color: #00d8ff;
+  color: #ffc401;
   background-color:transparent;
 }
 .main-menu .nav a:before{
@@ -215,7 +217,7 @@ opacity: 0;
 }
 .main-menu .nav li.active  a:before,
 .main-menu .nav a:hover:before{
-  background: #00d8ff;
+  background: #e7880c;
   width: 100%;
 }
 
@@ -231,11 +233,12 @@ opacity: 0;
 .main-menu .navbar-toggle {
   color: #00d8ff;
 }
-.main-menu .navbar-default .navbar-toggle:focus, 
-.main-menu .navbar-default .navbar-toggle:hover {
-  background-color: transparent;
-}
 
+.col-sm-35{
+  border-bottom: 1px solid rgb(26, 25, 25);
+  border-left: 1px solid rgb(26, 25, 25);
+  border-right: 1px solid rgb(26, 25, 25);
+}
 
 .home-border{
   border-top:2px solid #fff;
@@ -243,14 +246,15 @@ opacity: 0;
 
 /*book-btn*/
 .book-btn {
-background: #00d8ff;
-  border: 1px solid #00d8ff;
-  width: 120px;
-  height: 40px;
+  background: transparent;
+  border: 3px solid #f5f3f3;
+  width: 80px;
+  height: 50px;
   white-space: nowrap;
   text-align: center;
-  color: #fff;
-  font-size:14px;
+  color: rgb(248, 242, 242);
+  font-size:16px;
+  font-weight: bold;
   font-family: 'Poppins', sans-serif;
   text-transform: capitalize;
   border-radius: 5px;
@@ -261,11 +265,30 @@ background: #00d8ff;
   transition: 0.5s ease-in-out;
 }
 .book-btn:hover{
-  color: #fff;
-  background: #00d8d5;
-  border: 1px solid #00d8d5;
+    color: rgb(10, 10, 10);
+    background: #f1efef;
+    border: 3px solid #f8f4f4;
 }/*book-btn*/
 
+.header_change{
+    color: #fff;
+    background: linear-gradient(-45deg, rgb(26, 25, 25), #979695, #3f3e3e, #141414);
+    background-size: 400% 400%;
+    position: relative;
+    animation: change 5s ease-in-out infinite;
+}
+
+@keyframes change{
+  0%{
+      background-position: 0 50%;
+  }
+  50%{
+      background-position: 100% 50%;
+  }
+  100%{
+      background-position: 0 50%;
+  }
+}
 /*-------------------------------------
   3. 	About
 --------------------------------------*/
@@ -1496,12 +1519,6 @@ z-index: 2;
 
 }
 
-#scroll-Top  .return-to-top:hover {
-  background:#2cdbb5;
-  color: #fff;
-border-radius:50%;
-
-}
 
 
 /*========================Thank you=================*/

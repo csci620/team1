@@ -23,6 +23,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { AuthenticateButtonComponent } from './components/authenticate-button/authenticate-button.component';
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { AgmCoreModule } from '@agm/core';
+import { FlightsComponent } from './components/flights/flights.component';
 
 
 
@@ -42,7 +43,9 @@ import { AgmCoreModule } from '@agm/core';
     
     AuthenticateButtonComponent,
     
-    SignupButtonComponent
+    SignupButtonComponent,
+    
+    FlightsComponent
   ],
   imports: [
     BrowserModule,
