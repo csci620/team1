@@ -53,6 +53,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
+  
   getAddress(latitude, longitude) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
       
