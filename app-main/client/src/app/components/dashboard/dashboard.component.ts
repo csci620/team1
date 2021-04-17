@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  wait = true;
 
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -128,7 +129,8 @@ await this.show(obj.place_id,service)
   // console.log("photo-"+ result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
     console.log(result_data.photos)
 obj.photos = result_data.photos;
-obj.reviews = result_data.reviews;
+obj.reviews = JSON.parse(JSON.stringify(result_data.reviews[0]));
+console.log("review-"+obj.reviews.author_name)
 this.filtered_places.push(obj)
 
 })
@@ -167,13 +169,13 @@ return new Promise(function(resolve,reject){
       ) {
         console.log(place)
      //   var team_photos = <any>[]
-        place.photos.forEach(photo=> {
-          temp_photos.push(photo.getUrl({maxHeight: 500, maxWidth: 500}))
-        }
-        )
+      //  place.photos.forEach(photo=> {
+    //      temp_photos.push(photo.getUrl({maxHeight: 200, maxWidth: 200}))
+   //   })
+   temp_photos.push(place.photos[0].getUrl({maxHeight: 500, maxWidth: 500}))
+
        // this.current_photos = place.photos
       //  console.log("photo-"+place.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
-
      resolve({"reviews":place.reviews,"photos":temp_photos})
   
      

@@ -26,14 +26,13 @@ import { AgmCoreModule } from '@agm/core';
 import { FlightsComponent } from './components/flights/flights.component';
 import { WanderlustComponent } from './components/wanderlust/wanderlust.component';
 import { YoutubeComponent } from './components/youtube/youtube.component';
-
-
+import { TourpanelComponent } from './components/tourpanel/tourpanel.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
     HotelsComponent,
     UsersComponent,
     HeaderComponent,
@@ -42,16 +41,13 @@ import { YoutubeComponent } from './components/youtube/youtube.component';
     HomeComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
-    
     AuthenticateButtonComponent,
-    
     SignupButtonComponent,
-    
     FlightsComponent,
-    
     WanderlustComponent,
-    
-    YoutubeComponent
+    YoutubeComponent,
+    TourpanelComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

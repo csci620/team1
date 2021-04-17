@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
   home = true;
   @HostListener("document:scroll")
   scrollfunction(){
-    if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0){
+    if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0 ||
+      document.body.scrollTop < 0 || document.documentElement.scrollTop < 0){
       this.header_variable = true;
       this.variable = true;
       this.home = false
