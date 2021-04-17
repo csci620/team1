@@ -22,6 +22,7 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { AuthenticateButtonComponent } from './components/authenticate-button/authenticate-button.component';
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -50,6 +51,10 @@ import { SignupButtonComponent } from './components/signup-button/signup-button.
     HttpClientModule,
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC_nEmhoZpJGym0Tz2e-oapv7L-Ts7S5eI',
+      libraries: ['places']
+    }),
     // Import the module into the application, with configuration
     AuthModule.forRoot({
       domain: 'jgsathe.us.auth0.com',
