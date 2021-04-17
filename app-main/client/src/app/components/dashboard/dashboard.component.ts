@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { MapsAPILoader } from '@agm/core';
+import {MapsAPILoader} from '@agm/core';
+import {GoogleMapsAPIWrapper} from '@agm/core';
+
 import datepicker from 'js-datepicker'
 
 const apiKey = "f445c5c0ab5fe17b3a86807d237f710c"
@@ -22,6 +24,8 @@ export class DashboardComponent implements OnInit {
   name: string;
   result_places: any = <any>[];
   filtered_places: any = <any>[];
+  current_photos: any = <any>[];
+  places_index: any = <any>[];
   currentWeather: any = <any>{};
 
   private geoCoder;
@@ -107,62 +111,30 @@ console.log("hi")
   //    console.log(obj.geometry.location.lat())
   
 let httpData = await this.getCurrentWeather(obj.geometry.location.lat(),obj.geometry.location.lng())
- /*.subscribe(res => {
-    this.currentWeather = res;
-    console.log(this.currentWeather)
-    if(this.currentWeather.weather[0].main=="Clear"){
-      console.log("i2-"+i)
-    this.filtered_places.push(this.currentWeather.name)
-    }
-  }, err => {
-    if (err.error && err.error.message) {
-      alert(err.error.message);
-      //this.msg = err.error.message;
-      return;
-    }
-    alert('Failed to get weather.');
-  }, () => {
-})*/
+ 
 console.log("data")
 console.log(httpData)
 this.currentWeather = httpData;
 if(this.currentWeather.weather[0].main=="Clear"){
-
-    var req_photos = {placeId:obj.place_id};
-
-    await service.getDetails(req_photos,(place,status)=> {
-      if (
-        status === google.maps.places.PlacesServiceStatus.OK &&
-        place &&
-        place.geometry &&
-        place.geometry.location
-      ) {
-     var parsed = JSON.parse(JSON.stringify(place))
-     console.log(JSON.stringify(place))
-     console.log("length1-"+place.photos.length)
-     obj.reviews = place.reviews
-     console.log("length2-"+obj.photos.length)
-     console.log("obj-"+JSON.stringify(obj))
+  console.log("i2-"+i)
   
-     var temp_photos = <any>[]
-     place.photos.forEach(photo => {
-      temp_photos.push(photo.getUrl({ maxWidth: 500, maxHeight: 500 }));
-    });
-    obj.photos = temp_photos
-     this.filtered_places.push(obj)
-   //  console.log("results2-"+place.name)
-      }
-      else{
-        console.log("status2-"+status)
-      }
-                     })
-                 
-                   
 
-
+let photos_data =await this.show(obj.place_id,service)
+    // geocoder returns a "then-able" promise with results
+    // .then only runs after the promise resolves
+    var result_data = JSON.parse(JSON.stringify(photos_data))
+   // console.log(result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
+  // console.log("photo-"+ result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
+    console.log(result_data.photos)
+obj.photos = result_data.photos;
+obj.reviews = result_data.reviews;
+this.filtered_places.push(obj)
      // console.log(obj.id);
-  }
-  }
+   
+
+
+}
+ }
 }
   getCurrentWeather(lat: number, lng: number) {
     console.log(lat)
@@ -170,12 +142,42 @@ if(this.currentWeather.weather[0].main=="Clear"){
   }
 
 
-  show(place_id: string){
-    console.log("place_id-"+place_id)
-  }
+  async show(place_id: string,service: google.maps.places.PlacesService){
+
+    //let service =  new google.maps.places.PlacesService(document.createElement('div')); 
+    var temp_photos = <any>[]
+return new Promise(function(resolve,reject){
+     service.getDetails({placeId: place_id},(place,status)=> {
+      if (
+        status === google.maps.places.PlacesServiceStatus.OK &&
+        place &&
+        place.geometry &&
+        place.geometry.location
+      ) {
+        console.log(place)
+     //   var team_photos = <any>[]
+        place.photos.forEach(photo=> {
+          temp_photos.push(photo.getUrl({maxHeight: 500, maxWidth: 500}))
+        }
+        )
+       // this.current_photos = place.photos
+      //  console.log("photo-"+place.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
+
+     resolve({"reviews":place.reviews,"photos":temp_photos})
+  
+     
+   //  console.log("results2-"+place.name)
+      }
+      else{
+        reject(status)
+    }
+                     })
+                    })
+  
 
 
 
 
    
+}
 }
