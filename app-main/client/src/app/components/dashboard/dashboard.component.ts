@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   current_photos: any = <any>[];
   places_index: any = <any>[];
   currentWeather: any = <any>{};
+  loading = true;
 
   private geoCoder;
 
@@ -82,7 +83,6 @@ export class DashboardComponent implements OnInit {
               }
             }
           });
-
           //     alert(results[0].formatted_address);
           this.zoom = 12;
           this.address = results[0].formatted_address;
@@ -111,7 +111,7 @@ console.log("hi")
   //    console.log(obj.geometry.location.lat())
   
 let httpData = await this.getCurrentWeather(obj.geometry.location.lat(),obj.geometry.location.lng())
- 
+
 console.log("data")
 console.log(httpData)
 this.currentWeather = httpData;
@@ -119,23 +119,34 @@ if(this.currentWeather.weather[0].main=="Clear"){
   console.log("i2-"+i)
   
 
-let photos_data =await this.show(obj.place_id,service)
+await this.show(obj.place_id,service)
+.then( results => {
     // geocoder returns a "then-able" promise with results
     // .then only runs after the promise resolves
-    var result_data = JSON.parse(JSON.stringify(photos_data))
+    var result_data = JSON.parse(JSON.stringify(results))
    // console.log(result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
   // console.log("photo-"+ result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
     console.log(result_data.photos)
 obj.photos = result_data.photos;
 obj.reviews = result_data.reviews;
 this.filtered_places.push(obj)
+
+})
+.catch(function(status){
+console.log(status)
+  
+})
      // console.log(obj.id);
-   
+
 
 
 }
+console.log("dfd")
+this.loading = false;
  }
-}
+ }
+
+
   getCurrentWeather(lat: number, lng: number) {
     console.log(lat)
     return this.http.get(`${apiUrl}/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`).toPromise()
@@ -169,6 +180,7 @@ return new Promise(function(resolve,reject){
    //  console.log("results2-"+place.name)
       }
       else{
+     //   this.loading = false;
         reject(status)
     }
                      })
