@@ -480,8 +480,11 @@
       <div class="col-md-12">
 
 
-        
-        <table>
+        <div *ngIf="loading else loaded">
+          loading ...
+      </div>
+      <ng-template #loaded>
+        <table >
           <thead>
               <th>Tourist Attractions nearby which have a Clear Sky - </th>
           </thead>
@@ -502,6 +505,7 @@
               </tr>
           </tbody>
       </table>
+    </ng-template>
 
         </div></div>
   </div><!--/.container-->
