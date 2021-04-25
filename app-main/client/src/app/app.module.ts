@@ -68,6 +68,7 @@ import { LoaderComponent } from './components/loader/loader.component';
       httpInterceptor: {
         allowedList: [`https://localhost:3000/api/*`],
       },
+      redirectUri: "http://localhost:4200/dashboard"
     }),
     
   ],

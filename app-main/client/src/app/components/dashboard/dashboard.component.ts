@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
           let service =  new google.maps.places.PlacesService(document.createElement('div')); 
           var location = results[0].geometry.location;
 
-          var req_places = { location: location, radius: 5000000, types: ['tourist_attraction'] };
+          var req_places = { location: location, radius: 5000000, types: ['tourist_attraction', 'hotels', 'casinos'] };
 
           service.nearbySearch(req_places,  (results, status) => {
 
