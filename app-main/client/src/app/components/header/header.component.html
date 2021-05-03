@@ -15,10 +15,10 @@
             </div><!-- /.navbar-header-->
             <div class="navbar-header navbar-expand">		  
               <ul class="nav navbar-nav navbar-right">
-                <li class="header logo"><h1 href="wanderlust" >WANDERLUST</h1></li> 
+                <a href="dashboard"><img [class.logo]=log src="../../../assets/images/logo.png"><img></a>
+                <li class="header name"><h1 href="wanderlust" >WANDERLUST</h1></li> 
                 <li class="smooth-menu"><a href="#">HOME</a></li>
                 <li class="smooth-menu"><a href="flight">FLIGHTS</a></li>
-                <li class="smooth-menu"><a href="hotels">HOTELS </a></li>
                 <li class="smooth-menu"><a href="#">OFFERS </a></li>
                 <li class="smooth-menu"><a href="vlog">BLOG</a></li>
                 <li class="smooth-menu"><a href="#">SUBSCRIBE</a></li>
@@ -30,7 +30,7 @@
           </div><!-- /.main-menu-->
         </div><!-- /.col-->
       </div><!-- /.row -->
-        <div [class.home-border]="home"></div><!-- /.home-border-->
+      <div [class.home-border]="home"></div><!-- /.home-border-->   
     </div><!-- /.container-->
   </div><!-- /.header-area -->
 <!-- main-menu End -->
@@ -44,13 +44,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="../assets/images/1.jpg" alt="First slide">
+      <img class="d-block w-100" height="800px" src="../assets/images/1.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../assets/images/2.jpg" alt="Second slide">
+      <img class="d-block w-100" height="800px" src="../assets/images/2.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../assets/images/3.jpg" alt="Third slide">
+      <img class="d-block w-100" height="800px" src="../assets/images/3.jpg" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

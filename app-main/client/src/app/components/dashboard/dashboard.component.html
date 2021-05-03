@@ -1,55 +1,59 @@
-<br>
-<br>
-<br>
-<br>
-<div ng-controller="my">
-  <table border = "1">
-    <tr>
-      <th>Name</th>
-      <th>Rating</th>
-      <th>Photo</th>
-      <th>Place</th>
-    </tr>
-    
-    <tr *ngFor="let filtered_place of filtered_places">
-        <td>{{filtered_place.reviews.author_name}}</td>
-        <td>{{filtered_place.reviews.rating}}</td>
-        <td><img src="{{filtered_place.reviews.profile_photo_url}}"></td> 
-        <td>{{filtered_place.name}}</td>
-    </tr>
-    </table>
-  </div>
 
-      <section>
-        <div class="loader">
-            <div *ngIf="loading else loaded">
-              <span style="--i:1;"></span>
-              <span style="--i:2;"></span>  
-              <span style="--i:3;"></span>
-              <span style="--i:4;"></span>
-              <span style="--i:5;"></span>
-              <span style="--i:6;"></span>
-              <span style="--i:7;"></span>
-              <span style="--i:8;"></span>
-              <span style="--i:9;"></span>
-              <span style="--i:10;"></span>
-              <span style="--i:11;"></span>
-              <span style="--i:12;"></span>
-              <span style="--i:13;"></span>
-              <span style="--i:14;"></span>
-              <span style="--i:15;"></span>
-              <span style="--i:16;"></span>
-              <span style="--i:17;"></span>
-              <span style="--i:18;"></span>
-              <span style="--i:19;"></span>
-              <span style="--i:20;"></span>
+<section>
+  <div class="loader">
+    <div *ngIf="loading else loaded">
+      <span style="--i:1;"></span>
+      <span style="--i:2;"></span>  
+      <span style="--i:3;"></span>
+      <span style="--i:4;"></span>
+      <span style="--i:5;"></span>
+      <span style="--i:6;"></span>
+      <span style="--i:7;"></span>
+      <span style="--i:8;"></span>
+      <span style="--i:9;"></span>
+      <span style="--i:10;"></span>
+      <span style="--i:11;"></span>
+      <span style="--i:12;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:14;"></span>
+      <span style="--i:15;"></span>
+      <span style="--i:16;"></span>
+      <span style="--i:17;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:19;"></span>
+      <span style="--i:20;"></span>
+    </div>
+</div>
+
+ <ng-template #loaded></ng-template>
+    <div ng-controller="my">
+      <table border = "1">
+        <tr>
+          <th>Name</th>
+          <th>Rating</th>
+          <th>Photo</th>
+          <th>Place</th>
+          <th>Images</th>
+        </tr>
+        
+        <tr *ngFor="let filtered_place of filtered_places">
+            <td width=10px>{{filtered_place.reviews.author_name}}</td>
+            <td>{{filtered_place.reviews.rating}}</td>
+            <td><img src="{{filtered_place.reviews.profile_photo_url}}"></td> 
+            <td>{{filtered_place.name}}
+            <div *ngFor="let photo of filtered_place.photos">
+              <div><img src="{{photo}}"/></div>
             </div>
-        </div>
-      </section>
-    <ng-template #loaded>
-    </ng-template>
-
-    
+          </td>
+          <td>
+            <div> Review - {{filtered_place.reviews.text}}</div>
+          </td>   
+        </tr>
+        </table>
+      </div>
+</section>
+ 
+    <!--
     <table >
       <thead>
           <th>Tourist Attractions nearby which have a Clear Sky - </th>
@@ -64,6 +68,7 @@
           </tr>
       </tbody>
   </table>
+  -->
 
 
     

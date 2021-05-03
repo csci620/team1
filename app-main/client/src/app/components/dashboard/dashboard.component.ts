@@ -95,103 +95,78 @@ export class DashboardComponent implements OnInit {
       }
     
     });
-console.log("hi")
-
-  
+    console.log("hi")
   }
 
- async check(results: any = <any>[]){
+  async check(results: any = <any>[]){
     console.log(this.result_places)
     let service =  new google.maps.places.PlacesService(document.createElement('div')); 
-
     for(var i = 0; i <  this.result_places.length; i++) {
       var obj =  this.result_places[i];
       // this.name = obj.name
       console.log(obj.name)
       console.log("i1-"+i)
-  //    console.log(obj.geometry.location.lat())
-  
-let httpData = await this.getCurrentWeather(obj.geometry.location.lat(),obj.geometry.location.lng())
-
-console.log("data")
-console.log(httpData)
-this.currentWeather = httpData;
-if(this.currentWeather.weather[0].main=="Clear"){
-  console.log("i2-"+i)
-  
-
-await this.show(obj.place_id,service)
-.then( results => {
-    // geocoder returns a "then-able" promise with results
-    // .then only runs after the promise resolves
-    var result_data = JSON.parse(JSON.stringify(results))
-   // console.log(result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
-  // console.log("photo-"+ result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
-    console.log(result_data.photos)
-obj.photos = result_data.photos;
-obj.reviews = JSON.parse(JSON.stringify(result_data.reviews[0]));
-console.log("review-"+obj.reviews.author_name)
-this.filtered_places.push(obj)
-
-})
-.catch(function(status){
-console.log(status)
-  
-})
-     // console.log(obj.id);
-
-
-
-}
-console.log("dfd")
-this.loading = false;
- }
- }
-
-
-  getCurrentWeather(lat: number, lng: number) {
+      //console.log(obj.geometry.location.lat())
+      let httpData = await this.getCurrentWeather(obj.geometry.location.lat(),obj.geometry.location.lng())
+      console.log("data")
+      console.log(httpData)
+      this.currentWeather = httpData;
+      if(this.currentWeather.weather[0].main=="Clear"){
+        console.log("i2-"+i)
+        await this.show(obj.place_id,service)
+        .then( results => {
+          // geocoder returns a "then-able" promise with results
+          // .then only runs after the promise resolves
+          var result_data = JSON.parse(JSON.stringify(results))
+          // console.log(result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
+          // console.log("photo-"+ result_data.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
+          console.log(result_data.photos)
+          obj.photos = result_data.photos;
+          obj.reviews = JSON.parse(JSON.stringify(result_data.reviews[0]));
+          console.log("review-"+obj.reviews.author_name)
+          this.filtered_places.push(obj)
+        })
+        .catch(function(status){
+          console.log(status)
+        })
+        //console.log(obj.id);
+      }
+      console.log("dfd")
+      this.loading = false;
+    }
+  }
+  getCurrentWeather(lat: number, lng: number){
     console.log(lat)
     return this.http.get(`${apiUrl}/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`).toPromise()
   }
 
 
-  async show(place_id: string,service: google.maps.places.PlacesService){
-
-    //let service =  new google.maps.places.PlacesService(document.createElement('div')); 
-    var temp_photos = <any>[]
-return new Promise(function(resolve,reject){
-     service.getDetails({placeId: place_id},(place,status)=> {
-      if (
-        status === google.maps.places.PlacesServiceStatus.OK &&
-        place &&
-        place.geometry &&
-        place.geometry.location
-      ) {
+    async show(place_id: string,service: google.maps.places.PlacesService){
+      //let service =  new google.maps.places.PlacesService(document.createElement('div')); 
+      var temp_photos = <any>[]
+      return new Promise(function(resolve,reject){
+      service.getDetails({placeId: place_id},(place,status)=> {
+        if (
+            status === google.maps.places.PlacesServiceStatus.OK &&
+            place &&
+            place.geometry &&
+            place.geometry.location
+        ) {
         console.log(place)
-     //   var team_photos = <any>[]
-      //  place.photos.forEach(photo=> {
-    //      temp_photos.push(photo.getUrl({maxHeight: 200, maxWidth: 200}))
-   //   })
-   temp_photos.push(place.photos[0].getUrl({maxHeight: 500, maxWidth: 500}))
-
-       // this.current_photos = place.photos
-      //  console.log("photo-"+place.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
-     resolve({"reviews":place.reviews,"photos":temp_photos})
-  
-     
-   //  console.log("results2-"+place.name)
+        //var team_photos = <any>[]
+        //place.photos.forEach(photo=> {
+        //temp_photos.push(photo.getUrl({maxHeight: 200, maxWidth: 200}))
+        //   })
+        temp_photos.push(place.photos[0].getUrl({maxHeight: 1000, maxWidth: 1000}))
+        // this.current_photos = place.photos
+        //  console.log("photo-"+place.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
+        resolve({"reviews":place.reviews,"photos":temp_photos})
+        //console.log("results2-"+place.name)
       }
       else{
-     //   this.loading = false;
-        reject(status)
-    }
-                     })
-                    })
-  
-
-
-
-
-   
-}
-}
+       //this.loading = false;
+      reject(status)
+      }
+    })
+  })  
+}}
