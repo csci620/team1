@@ -4,7 +4,7 @@ version: '3.0' # specify docker-compose version
 services:
  client: # name of the first service
   build: app-main/client # specify the directory of the Dockerfile
-  # image: nginx:1.17.1-alpine
+  #image: nginx:1.17.1-alpine
   ports:
   - "4200:80" # specify port mapping
  

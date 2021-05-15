@@ -28,6 +28,7 @@ import { WanderlustComponent } from './components/wanderlust/wanderlust.componen
 import { YoutubeComponent } from './components/youtube/youtube.component';
 import { TourpanelComponent } from './components/tourpanel/tourpanel.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,10 +48,13 @@ import { LoaderComponent } from './components/loader/loader.component';
     WanderlustComponent,
     YoutubeComponent,
     TourpanelComponent,
-    LoaderComponent
+    LoaderComponent,
+    //BrowserModule,
+   // ReactiveFormsModule
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -68,7 +72,7 @@ import { LoaderComponent } from './components/loader/loader.component';
       httpInterceptor: {
         allowedList: [`https://localhost:3000/api/*`],
       },
-      redirectUri: "http://localhost:4200/dashboard"
+      redirectUri: "http://localhost:4200/hotels"
     }),
     
   ],

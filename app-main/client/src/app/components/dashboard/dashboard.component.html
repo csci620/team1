@@ -42,7 +42,7 @@
             <td><img src="{{filtered_place.reviews.profile_photo_url}}"></td> 
             <td>{{filtered_place.name}}
             <div *ngFor="let photo of filtered_place.photos">
-              <div><img src="{{photo}}"/></div>
+              <div ><a href="#"  (click)="loginWithRedirect()" ><img src="{{photo}}" /> </a></div>
             </div>
           </td>
           <td>

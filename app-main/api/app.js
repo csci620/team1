@@ -11,21 +11,9 @@ const jwks = require('jwks-rsa');
 const app = express();
 
 
-var jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: 'https://jgsathe.us.auth0.com/.well-known/jwks.json'
-}),
-audience: 'https://localhost:3000/dashboard',
-issuer: 'https://jgsathe.us.auth0.com/',
-algorithms: ['RS256']
-});
-
-app.use(jwtCheck);
 
 const db = require("./app/models");
+const hotelRoute = require("./app/routes/hotels.routes");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
@@ -51,13 +39,39 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors());
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to books application.",  });
+
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  
+  if(req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', '*');
+    return res.status(200).json({});
+  }
+  next();
+ 
 });
 
-require("./app/routes/hotels.routes")(app);
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://jgsathe.us.auth0.com/.well-known/jwks.json'
+}),
+audience: 'https://localhost:3000/dashboard',
+issuer: 'https://jgsathe.us.auth0.com/',
+algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
+
+app.use('/hotels', hotelRoute);
+// simple route
+
+
+//require("./app/routes/hotels.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
@@ -65,6 +79,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 //testing server
-app.post('/api/hotels/create', (req,res) => {
-res.send("hotel added success");
-});
+

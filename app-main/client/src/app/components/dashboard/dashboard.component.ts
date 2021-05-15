@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {  Router } from '@angular/router';
 import {MapsAPILoader} from '@agm/core';
+import { AuthService } from '@auth0/auth0-angular';
 import {GoogleMapsAPIWrapper} from '@agm/core';
 
 import datepicker from 'js-datepicker'
@@ -36,7 +37,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,private router: Router,public auth: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +70,7 @@ export class DashboardComponent implements OnInit {
           let service =  new google.maps.places.PlacesService(document.createElement('div')); 
           var location = results[0].geometry.location;
 
-          var req_places = { location: location, radius: 5000000, types: ['tourist_attraction', 'hotels', 'casinos'] };
+          var req_places = { location: location, radius: 5000000, types: ['tourist_attraction'] };
 
           service.nearbySearch(req_places,  (results, status) => {
 
@@ -138,6 +139,10 @@ export class DashboardComponent implements OnInit {
   getCurrentWeather(lat: number, lng: number){
     console.log(lat)
     return this.http.get(`${apiUrl}/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`).toPromise()
+  }
+
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
   }
 
 
