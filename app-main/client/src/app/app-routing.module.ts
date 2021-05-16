@@ -14,7 +14,7 @@ const routes: Routes = [
 //{ path: 'home', component: HomeComponent},
 //{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: '', component: DashboardComponent, pathMatch: 'full'},
-{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+{ path: 'dashboard', component: DashboardComponent },
 { path: 'hotels', component: HotelsComponent,  canActivate: [AuthGuard] },
 
 

@@ -7,7 +7,9 @@ const baseUrl = 'http://localhost:3000/api/hotels';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
-    'Access-Control-Allow-Origin':'*'
+    'Access-Control-Allow-Origin':'*',
+   "Access-Control-Allow-Headers": "*",
+   'Access-Control-Allow-Method':'*',
   })
 };
 

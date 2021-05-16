@@ -41,18 +41,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+
+
+
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
   
   if(req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', '*');
-    return res.status(200).json({});
+    return res.status(200).json({}) || res.status(204).json({});
   }
   next();
  
 });
-
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
       cache: true,
@@ -60,7 +63,7 @@ var jwtCheck = jwt({
       jwksRequestsPerMinute: 5,
       jwksUri: 'https://jgsathe.us.auth0.com/.well-known/jwks.json'
 }),
-audience: 'https://localhost:3000/dashboard',
+audience: 'https://csci620-team1-ui.azurewebsites.net:3000/dashboard',
 issuer: 'https://jgsathe.us.auth0.com/',
 algorithms: ['RS256']
 });
