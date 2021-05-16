@@ -70,7 +70,7 @@ algorithms: ['RS256']
 
 app.use(jwtCheck);
 
-app.use('/hotels', hotelRoute);
+app.use('/hotels', hotelRoute );
 // simple route
 
 

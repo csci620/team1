@@ -68,7 +68,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthModule.forRoot({
       domain: 'jgsathe.us.auth0.com',
       clientId: 'V27PwwrjJ8sqxSd0wAoBxp4BtOzqJecN',
-      audience: 'https://csci620-team1-ui.azurewebsites.net:3000/dashboard',
+      audience: 'https://csci620-team1-ui.azurewebsites.net:3000/dashboard' ,
       httpInterceptor: {
         allowedList: [`https://csci620-team1-ui.azurewebsites.net:3000/api/*`],
       },

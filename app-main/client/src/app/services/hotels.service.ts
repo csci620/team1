@@ -21,7 +21,7 @@ export class HotelsService {
   constructor(private http: HttpClient) { }
 
   getHotels(): Observable<any> {
-    console.log("getHotels()....");
+    console.log("getHotels()... .");
     return this.http.get(baseUrl, httpOptions);
   }
 
