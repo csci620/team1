@@ -61,7 +61,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD9zcvmiqqtmklC0TVns6u_GpJtDytR1-k',
+      apiKey: 'AIzaSyDQrwbj3UjBHsWmuqJEyQqYOYue2R0qHD0',
       libraries: ['places']
     }),
     // Import the module into the application, with configuration
