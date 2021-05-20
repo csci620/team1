@@ -30,7 +30,7 @@ section .loader{
     width: 100px;
     height: 100px;
     align-self: center;
-    left: 225px;
+    left: 500px;
 }
 
 section .loader span{
@@ -69,3 +69,6 @@ section .loader span::before{
     }
 }
 
+.container{
+    margin-top: 0px;
+}

@@ -139,7 +139,7 @@ export class YoutubeComponent implements OnInit {
       }
       this.filtered_places.forEach(filtered_place=> {
         console.log("place-"+filtered_place)
-                  this.youtube.getChannels("tourist_attraction,traveling,vlog,famous,wildlife,",filtered_place.name).subscribe((data)=>{
+                  this.youtube.getChannels("tourist_attraction",filtered_place.name).subscribe((data)=>{
                   console.log(data)
                   data.items.forEach(item=> {
                   this.videos.push(item)

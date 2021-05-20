@@ -22,146 +22,123 @@
     </div>
   </div>
 </div>  -->
-<div class="container"  >
- 
-   
-    <div class="row"  *ngFor="let filtered_place of filtered_places; let p = index">
-        
-      
-          
-    <div class="card mb-3 text-dark bg-light" style="max-width: 100%;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <div id="carouselExampleControls_{{p}}" class="carousel slide" data-ride="carousel">
 
-                <!-- indicators -->
-              
-            
-                <!-- inner -->
-                <div class="carousel-inner">
-    
-                    <div class="carousel-item" *ngFor="let photo of filtered_place.photos; let i = index"
-                    [ngClass]="{'active': i == 0 }">
-                    <img [src]="photo" alt="_i" class="d-block w-100">
-                  </div>
-    
-                  <a class="carousel-control-prev" href="#carouselExampleControls_{{p}}" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls_{{p}}" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                  <!--  <div   *ngFor="let photo of filtered_place.photos; let i = index">
-                        
-                  <div [ngClass]=" i === 0 ? 'carousel-item active' : 'carousel-item'">
-                    <img src="{{photo}}" alt="id_{{i}}"  class="d-block w-100">
-                    
-                  </div>
-                  
-                  </div> -->
-    
-                </div>
-            
-                <!-- controls -->
-               <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a> -->
-              </div>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title" >{{filtered_place.name}}</h5>
-              <p class="card-text"><small class="text-muted">{{filtered_place.reviews.author_name}}</small></p>
-              <p class="card-text">{{filtered_place.reviews.text}}</p>
-              <p class="card-text" id="stars" class="star">
-                <span *ngFor="let item of filtered_place.max; let i = index"  ><span *ngIf="(filtered_place.reviews.rating < 4)" class="glyphicon glyphicon-star"></span>  </span>
-                <span *ngFor="let item of filtered_place.max; let i = index" ><span *ngIf="(filtered_place.reviews.rating >= 4 && filtered_place.reviews.text < 5) " class="glyphicon glyphicon-star-empty"></span></span>
-             </p>
-              <p class="card-text">{{filtered_place.address}}</p>
-              <p class="card-text">{{filtered_place.telephone}}</p>
-              <form (submit)="addHotels()" >
-      
-         
-                <input type="hidden" [(ngModel)]="hotel.hotelName"   name="hotelName" value="{{filtered_place.name}}"  class="form-control"/>
-    
-           
-           
-              
-                <input type="hidden" [(ngModel)]="hotel.hotelAddr"  name="hotelAddr" value="{{filtered_place.address}}"  class="form-control"/>
-    
-            
-                <input type="hidden" [(ngModel)]="hotel.hotelPricePerDay"  name="hotelPricePerDay" class="form-control"/>
-                <input type="hidden" [(ngModel)]="hotel.hotelPriceCurr"  name="hotelPriceCurr" class="form-control"/>
-              <input type="hidden" [(ngModel)]="hotel.hotelPhone"  name="hotelPhone" value="{{filtered_place.telephone}}" class="form-control"/>
-              <input type="hidden" [(ngModel)]="hotel.isBooked"  name="isBooked" class="form-control"/>
-              <input type="submit" value="Save" class="btn btn-success pull-right" />
-           </form>         
-
-              
-            </div>
-          </div>
+<section>
+  <br/>
+  <div class="loader">
+    <div *ngIf="loading else loaded">
+      <div class="loader">
+        <div class="spinner-border text-info" role="status">
+          <span class="sr-only">LOADING....</span>
         </div>
-      </div>
-      
+      </div>  
+    </div>
+  </div>
 
+  <ng-template #loaded></ng-template>
+    <div ng-controller="my">
+      <div class="container">
+        <div class="row"  *ngFor="let filtered_place of filtered_places; let p = index">    
+          <div class="card mb-3 text-dark bg-light" style="max-width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <div id="carouselExampleControls_{{p}}" class="carousel slide" data-ride="carousel">
+                    <!-- indicators -->
+                    <!-- inner -->
+                    <div class="carousel-inner">    
+                        <div class="carousel-item" *ngFor="let photo of filtered_place.photos; let i = index"
+                          [ngClass]="{'active': i == 0 }">
+                          <img [src]="photo" alt="_i" class="d-block w-100">
+                        </div><!-- carousel-item -->
+                        <a class="carousel-control-prev" href="#carouselExampleControls_{{p}}" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls_{{p}}" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                        <!--  <div   *ngFor="let photo of filtered_place.photos; let i = index">    
+                        <div [ngClass]=" i === 0 ? 'carousel-item active' : 'carousel-item'">
+                        <img src="{{photo}}" alt="id_{{i}}"  class="d-block w-100">
+                        </div>
+                        </div> -->
+                    </div><!-- carousel-inner -->
+                      <!-- controls -->
+                      <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                          </a> -->
+                </div><!-- carousel-example -->
+              </div><!-- col-md-4e -->
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" >{{filtered_place.name}}</h5>
+                    <p class="card-text"><small class="text-muted">{{filtered_place.reviews.author_name}}</small></p>
+                    <p class="card-text">{{filtered_place.reviews.text}}</p>
+                    <p class="card-text" id="stars" class="star">
+                      <span *ngFor="let item of filtered_place.max; let i = index"  ><span *ngIf="(filtered_place.reviews.rating < 4)" class="glyphicon glyphicon-star"></span>  </span>
+                      <span *ngFor="let item of filtered_place.max; let i = index" ><span *ngIf="(filtered_place.reviews.rating >= 4 && filtered_place.reviews.text < 5) " class="glyphicon glyphicon-star-empty"></span></span>
+                    </p>
+                    <p class="card-text">{{filtered_place.address}}</p>
+                    <p class="card-text">{{filtered_place.telephone}}</p>
+                    <form (submit)="addHotels()" >
+                      <input type="hidden" [(ngModel)]="hotel.hotelName"   name="hotelName" value="{{filtered_place.name}}"  class="form-control"/>              
+                      <input type="hidden" [(ngModel)]="hotel.hotelAddr"  name="hotelAddr" value="{{filtered_place.address}}"  class="form-control"/>
+                      <input type="hidden" [(ngModel)]="hotel.hotelPricePerDay"  name="hotelPricePerDay" class="form-control"/>
+                      <input type="hidden" [(ngModel)]="hotel.hotelPriceCurr"  name="hotelPriceCurr" class="form-control"/>
+                      <input type="hidden" [(ngModel)]="hotel.hotelPhone"  name="hotelPhone" value="{{filtered_place.telephone}}" class="form-control"/>
+                      <input type="hidden" [(ngModel)]="hotel.isBooked"  name="isBooked" class="form-control"/>
+                      <input type="submit" value="Save" class="btn btn-success pull-right" />
+                    </form>                       
+                </div><!--card-body-->
+              </div><!--col-md-8-->
+            </div><!--row-g-->
+          </div><!--card-->
+        </div><!--row-->
+      </div><!--container-->    
+    </div><!--controller-->
+</section>
 
-</div>
-
-
-   
-      
-   
-<!--
-    <form (submit)="addHotels()" >
-        <div class="form-group">
-            <label>Hotel Name</label>
-            <input type="text" [(ngModel)]="hotel.hotelName"  name="hotelName" class="form-control"/>
-
+    
+      <!--
+      <form (submit)="addHotels()" >
+      <div class="form-group">
+        <label>Hotel Name</label>
+        <input type="text" [(ngModel)]="hotel.hotelName"  name="hotelName" class="form-control"/>
         </div>
         <div class="form-group">
             <label>Hotel Address</label>
             <input type="text" [(ngModel)]="hotel.hotelAddr" name="hotelAddr" class="form-control"/>
-
         </div>
         <div class="form-group">
             <label>Hotel Price per Day</label>
             <input type="text" [(ngModel)]="hotel.hotelPricePerDay" name="hotelPricePerDay" class="form-control"/>
-
         </div>
         <div class="form-group">
             <label>Hotel Currency</label>
             <input type="text" [(ngModel)]="hotel.hotelPriceCurr" name="hotelPriceCurr" class="form-control"/>
-
         </div>
         <div class="form-group">
             <label>Hotel Phone</label>
             <input type="text" [(ngModel)]="hotel.hotelPhone" name="hotelPhone" class="form-control"/>
-
         </div>
         <div class="form-group">
             <label>Hotel Email</label>
             <input type="text" [(ngModel)]="hotel.hotelEmail" name="hotelEmail" class="form-control"/>
-
         </div>
         <div class="form-group">
             <label>Hotel Reservation</label>
             <input type="text" [(ngModel)]="hotel.isBooked" name="isBooked" class="form-control"/>
-
         </div>
         <input type="submit" value="Save" class="btn btn-success" />
         <input type="text" value = "test" class ="btn" />
     </form>
     -->
-</div>
-
-
    <!-- <div class="container">
         <table class="table  table-hover">
             
@@ -172,32 +149,17 @@
                 <th scope="col">Phone Number</th>
                 <th scope="col">Email</th>
                 <th scope="col"><button (click)="deleteAll()">Delete All</button></th>
-              </tr>
-            
-        
-           
-                
-                 <tr *ngFor="let hotel of hotels">
-                   
+              </tr>              
+                 <tr *ngFor="let hotel of hotels">               
                     <td ><input type="text" [(ngModel)]="hotel.hotelName" name="hotelName" value="{{hotel.hotelName}}"/> </td>
                     <td><input type="text" [(ngModel)]="hotel.hotelPriceCurr" name="hotelPriceCurr" value="{{hotel.hotelPriceCurr}}"/></td>
                     <td>{{hotel.hotelPhone}}</td>
                     <td>{{hotel.hotelEmail}}</td>
                     <td class="vcenter"> <button (click)="deleteHotel(hotel._id)">Delete</button>&nbsp; <button (click)="updateHotel(hotel._id, hotel)">Update</button>  
-                        
-                
-                    </tr>
-
-          
-            
-                
-            
-            
-
-        
-          </table>
+                  </tr
+        </table>
          
-    </div> -->
+      </div> -->
 
 
     

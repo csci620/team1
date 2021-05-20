@@ -26,26 +26,23 @@
   </div>
   
    <ng-template #loaded></ng-template>
-        <div>
             <div class="container">
-                <br>
                 <input #find type="text" placeholder="Discover..." required>
-                <br><br>
-                <button class=" btn btn-dark"(click)="getData()"><h3>Search</h3></button>
-                <br><br>
-                <ul *ngFor="let video of videos">
-                <!----   <ul *ngFor= "let places of filtered_place.name">
-                        <ul *ngFor= "let video of places">-->
+                    <br><br>
+                    <button class=" btn btn-secondary"(click)="getData()"><h3>Search</h3></button>
+                    <br><br>
+                    <ul *ngFor="let video of videos">
+                        <!----   <ul *ngFor= "let places of filtered_place.name">
+                            <ul *ngFor= "let video of places">-->
                             <h4>{{video.snippet.title}}</h4>
                             <p>{{video.snippet.description}}</p>
                             <a href="https://www.youtube.com/embed/{{video.id.videoId}}">
                                 <img class="img-thumbnail" width="800px" height=500px src="{{video.snippet.thumbnails.high.url}}">
                             </a>
-                        </ul>    
+                    </ul>    
                    <!--- </ul>
                 </ul>    -->
-            </div>   
-        </div>    
+            </div>      
   </section>
    
   

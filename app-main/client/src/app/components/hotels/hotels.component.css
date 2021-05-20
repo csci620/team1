@@ -132,3 +132,14 @@
       .glyphicon-star:hover {
         transform: rotate(-15deg) scale(1.3);
       }
+    
+    .loader {
+      padding-left: 250px;
+      padding-bottom: 50px;
+    }  
+
+    .spinner-border{
+      width: 100px;
+      height: 100px;
+    }
+      
