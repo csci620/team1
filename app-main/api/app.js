@@ -5,7 +5,7 @@ var path = require("path");
 var cors = require("cors");
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
-
+const token = require('jsonwebtoken');
 
 
 const app = express();
@@ -40,10 +40,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+var jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: 'https://jgsathe.us.auth0.com/.well-known/jwks.json' 
+}),
+audience: 'https://localhost:3000/dashboard',
+issuer: 'https://jgsathe.us.auth0.com/',
+algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
 
 
-
-
+app.use(cors());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -56,25 +68,14 @@ app.use((req, res, next) => {
   next();
  
 });
-var jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: 'https://jgsathe.us.auth0.com/.well-known/jwks.json'
-}),
-audience: 'https://csci620-team1-ui.azurewebsites.net:3000/dashboard',
-issuer: 'https://jgsathe.us.auth0.com/',
-algorithms: ['RS256']
-});
 
-app.use(jwtCheck);
 
-app.use('/hotels', hotelRoute );
+//app.use('/hotels', hotelRoute );
 // simple route
 
 
-//require("./app/routes/hotels.routes")(app);
+require("./app/routes/hotels.routes")(app);
+require("./app/routes/users.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

@@ -5,7 +5,7 @@ import {  Router } from '@angular/router';
 import {MapsAPILoader} from '@agm/core';
 import { AuthService } from '@auth0/auth0-angular';
 import {GoogleMapsAPIWrapper} from '@agm/core';
-
+import { UsersService} from '../../services/users.service'
 import datepicker from 'js-datepicker'
 
 const apiKey = "f445c5c0ab5fe17b3a86807d237f710c"
@@ -14,7 +14,8 @@ const apiUrl = "https://api.openweathermap.org/data/2.5"
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [UsersService]
 })
 
 export class DashboardComponent implements OnInit {
@@ -30,6 +31,8 @@ export class DashboardComponent implements OnInit {
   currentWeather: any = <any>{};
   loading = true;
 
+  users:  Array<any>;
+
   private geoCoder;
 
 
@@ -37,7 +40,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,private router: Router,public auth: AuthService
+    private ngZone: NgZone,private router: Router,public auth: AuthService,
+    private userService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +49,7 @@ export class DashboardComponent implements OnInit {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
     });
+    this.addUsers();
   }
 
   wait = true;
@@ -162,7 +167,7 @@ export class DashboardComponent implements OnInit {
         //place.photos.forEach(photo=> {
         //temp_photos.push(photo.getUrl({maxHeight: 200, maxWidth: 200}))
         //   })
-        temp_photos.push(place.photos[0].getUrl({maxHeight: 1000, maxWidth: 1000}))
+        temp_photos.push(place.photos[0].getUrl({maxHeight: 500, maxWidth: 500}))
         // this.current_photos = place.photos
         //  console.log("photo-"+place.photos[0].getUrl({maxWidth: 500, maxHeight: 500}))
         resolve({"reviews":place.reviews,"photos":temp_photos})
@@ -174,4 +179,95 @@ export class DashboardComponent implements OnInit {
       }
     })
   })  
-}}
+}
+
+
+user = {
+  userId: "",
+  join_date: ""
+
+}
+
+addUsers(): void {
+console.log(" in addUser()");
+const userData = {
+userId: this.user.userId,
+join_date: this.user.join_date
+
+}
+
+this.userService.create(userData).subscribe(
+response => {
+console.log(response);
+// this.isBooked = true;
+console.log("Users :  User save in  in database " );
+this.users.push(response);
+
+
+},
+error => {
+console.log(error);
+});
+}
+
+userData(): void {
+this.userService.getUsers()
+.subscribe(
+data => {
+
+this.user =    data;
+
+console.log(data);
+},
+error => {
+console.log(error);
+});
+}
+
+
+deleteAll(): void {
+this.userService.deleteAll()
+.subscribe(
+hotel => {
+
+console.log(hotel);
+
+},
+error => {
+console.log(error);
+});
+}
+
+deleteHotel(ind): void {
+this.userService.delete(ind)
+.subscribe(
+response => {
+console.log(response);
+
+/*for (let val = this.hotels.length; val >=0; val--) {
+  if (this.isChecked[val]) {
+    this.hotels.splice(val, 1);
+    delete this.isChecked[val];
+  }
+} */
+},
+error => {
+console.log(error);
+});
+}
+
+
+updateHotel(ind, data): void {
+this.userService.update(ind, data)
+.subscribe(
+response => {
+console.log(response);
+
+},
+error => {
+console.log(error);
+});
+}
+
+
+}

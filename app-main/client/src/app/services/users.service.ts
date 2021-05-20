@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
 
-const baseUrl = 'https://csci620-team1-api.azurewebsites.net/api/hotels';
+
+const baseUrl = 'https://csci620-team1-api.azurewebsites.net/api/users';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -12,16 +12,16 @@ const httpOptions = {
    'Access-Control-Allow-Method':'*',
   })
 };
-
 @Injectable({
   providedIn: 'root'
 })
-export class HotelsService {
+export class UsersService {
 
+ 
   constructor(private http: HttpClient) { }
 
-  getHotels(): Observable<any> {
-    console.log("getHotels()... .");
+  getUsers(): Observable<any> {
+    console.log("getUsers()... .");
     return this.http.get(baseUrl,  httpOptions);
   }
 
@@ -31,7 +31,7 @@ export class HotelsService {
 
   create(data): Observable<any> {
 
-    console.log(" in here");
+     console.log("User service call... to post()")
     return this.http.post(baseUrl, data, httpOptions);
     //.pipe(map((response: Response) => response.json());
    
@@ -53,5 +53,3 @@ export class HotelsService {
     return this.http.get(`${baseUrl}?name=${name}`, httpOptions);
   }
 }
-
-

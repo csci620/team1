@@ -2,37 +2,46 @@ const db = require("../models");
 const User = db.users;
 
 exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.fName) {
-      res.status(400).send({ message: "Content can not be empty!" });
-      return;
-    }
+  // Validate request
+ 
+  const users = new User({
 
-    // Create a Hotel
-    const users = new User({
-
-      
-      fName: req.body.fName,
-      lName: req.body.lName,
-      custAddress: req.body.custAddress,
-      join_date: new Date(req.body.join_date),
+    userId: req.user.sub,
+    join_date: new Date()
     
-      
-    });
+  });
 
-    // Save Hotel in the database
-    users
-      .save(users)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the hotel."
-        });
+  let authToken = req.user.sub;
+  User.findOne({  "userId": authToken }, function (err, count) {
+    console.log(" user count => " + count);
+    if (count === null || count == 0) {
+     
+      console.log(" creating user in databse...")
+      // Create a user in db
+      const users = new User({
+        userId: authToken,
+        join_date: new Date(req.body.join_date),
       });
-  };
+
+      // Save User in the database
+      users
+        .save(users)
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the User.",
+          });
+        });
+    }  else {
+       console.log(" user exists in database ");
+    //res.status(400).send({ message: "Content can not be empty!" });
+    return;
+   }
+  });
+};
 
   exports.findAll = (req, res) => {
     const fName = req.query.fName;

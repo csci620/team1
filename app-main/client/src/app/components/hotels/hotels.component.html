@@ -1,7 +1,31 @@
 <br/>
+<!-- Modal -->
+<!-- <div *ngIf="message !== null" >
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  -->
 <div class="container"  >
+ 
    
-    <div class="row" *ngFor="let filtered_place of filtered_places; let p = index">
+    <div class="row"  *ngFor="let filtered_place of filtered_places; let p = index">
         
       
           
@@ -62,22 +86,22 @@
              </p>
               <p class="card-text">{{filtered_place.address}}</p>
               <p class="card-text">{{filtered_place.telephone}}</p>
-              <form  name="frm_{{p}}" (click)="addHotels()" >
+              <form (submit)="addHotels()" >
       
          
-                <input type="text" [(ngModel)]="hotel.hotelName" hidden  name="hotelName" class="form-control"/>
+                <input type="hidden" [(ngModel)]="hotel.hotelName"   name="hotelName" value="{{filtered_place.name}}"  class="form-control"/>
     
            
            
               
-                <input type="text" [(ngModel)]="hotel.hotelAddr" hidden name="hotelAddr" class="form-control"/>
+                <input type="hidden" [(ngModel)]="hotel.hotelAddr"  name="hotelAddr" value="{{filtered_place.address}}"  class="form-control"/>
     
             
-           
-             
-              <input type="text" [(ngModel)]="hotel.hotelPhone" hidden name="hotelPhone" class="form-control"/>
-    
-              <button class="btn btn-primary pull-right"  >Reserve</button>
+                <input type="hidden" [(ngModel)]="hotel.hotelPricePerDay"  name="hotelPricePerDay" class="form-control"/>
+                <input type="hidden" [(ngModel)]="hotel.hotelPriceCurr"  name="hotelPriceCurr" class="form-control"/>
+              <input type="hidden" [(ngModel)]="hotel.hotelPhone"  name="hotelPhone" value="{{filtered_place.telephone}}" class="form-control"/>
+              <input type="hidden" [(ngModel)]="hotel.isBooked"  name="isBooked" class="form-control"/>
+              <input type="submit" value="Save" class="btn btn-success pull-right" />
            </form>         
 
               
@@ -89,6 +113,8 @@
 
 
 </div>
+
+
    
       
    
@@ -132,9 +158,11 @@
         <input type="submit" value="Save" class="btn btn-success" />
         <input type="text" value = "test" class ="btn" />
     </form>
-    
+    -->
 </div>
-    <div class="container">
+
+
+   <!-- <div class="container">
         <table class="table  table-hover">
             
               <tr>
@@ -169,8 +197,7 @@
         
           </table>
          
-    </div>
+    </div> -->
 
 
     
--->

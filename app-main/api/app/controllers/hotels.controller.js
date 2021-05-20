@@ -1,17 +1,30 @@
 const db = require("../models");
 const Hotel = db.hotels;
-
+const User = db.users;
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.hotelName) {
-      res.status(400).send({ message: "Content can not be empty!" });
-      return;
-    }
-    console.log("hotel phone => " + req.body.hotelPhone);
-    // Create a Hotel
-    const hotel = new Hotel({
+    
+
+    console.log("REQUEST TOKEN AFTER DECODE => " + JSON.stringify(req.user)); 
+    let authToken = req.user.sub;
+    console.log("hotel phone => " + authToken);
+    User.findOne({ "userId": authToken }, function (err, count) {
+
+      console.log("hotel for user count  => " + count);
+      if (count === undefined) {
+        res.send({"message": "invalid user"});
+        
+      }
+      if (count >= 0 ) {
 
       
+      
+
+        console.log("user is a member of this site!")
+           // Create a Hotel
+    const hotel = new Hotel({
+
+      userId: req.user.sub,
       hotelName: req.body.hotelName,
       hotelAddr: req.body.hotelAddr,
       hotelPricePerDay: req.body.hotelPricePerDay,
@@ -36,6 +49,12 @@ exports.create = (req, res) => {
             err.message || "Some error occurred while creating the hotel."
         });
       });
+
+      } else {
+        console.log("user is not a member!")
+      }
+     });
+   
   };
 
   exports.findAll = (req, res) => {
@@ -44,16 +63,21 @@ exports.create = (req, res) => {
    // console.log("hotelName findall()=> " + hotelName);
     //var condition = hotelName ? { hotelName: { $regex: new RegExp(hotelName), $options: "i" } } : {};
 
-    Hotel.find({})
+    Hotel.find({userId: req.user.sub})
       .then(data => {
-        console.log(data);
-        res.send(data);
+        
+        
+          res.send(data);
+       
+       
       })
       .catch(err => {
         res.status(500).send({
           message:
             err.message || "Some error occurred while retrieving Hotel."
-        });
+        }); 
+
+       
       });
   };
 

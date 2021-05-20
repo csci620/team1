@@ -1,27 +1,27 @@
 module.exports = app => {
-    const hotels = require("../controllers/users.controller.js");
+    const users = require("../controllers/users.controller.js");
 
     var router = require("express").Router();
 
-    // Create a new hotels
-    router.post("/create", hotels.create);
+    // Create a new users
+    router.post("/", users.create);
 
-    // Retrieve all hotels
-    router.get("/", hotels.findAll);
+    // Retrieve all users
+    router.get("/", users.findAll);
 
     
 
-    // Retrieve a single hotels with id
-    router.get("/:id", hotels.findOne);
+    // Retrieve a single users with id
+    router.get("/:id", users.findOne);
 
-    // Update a hotels with id
-    router.put("/:id", hotels.update);
+    // Update a users with id
+    router.put("/:id", users.update);
 
-    // Delete a hotels with id
-    router.delete("/:id", hotels.delete);
+    // Delete a users with id
+    router.delete("/:id", users.delete);
 
-    // Create a new hotels
-    router.delete("/delete", hotels.deleteAll);
+    // Create a new users
+    router.delete("/delete", users.deleteAll);
 
     app.use('/api/users', router);
   };

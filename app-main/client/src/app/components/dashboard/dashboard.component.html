@@ -36,13 +36,14 @@
           <th>Images</th>
         </tr>
         
+        
         <tr *ngFor="let filtered_place of filtered_places">
             <td width=10px>{{filtered_place.reviews.author_name}}</td>
             <td>{{filtered_place.reviews.rating}}</td>
             <td><img src="{{filtered_place.reviews.profile_photo_url}}"></td> 
             <td>{{filtered_place.name}}
             <div *ngFor="let photo of filtered_place.photos">
-              <div ><a href="#"  (click)="loginWithRedirect()" ><img src="{{photo}}" /> </a></div>
+              <div ><a href="/login"   ><img src="{{photo}}" /> </a></div>
             </div>
           </td>
           <td>

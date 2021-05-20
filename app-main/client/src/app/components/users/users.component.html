@@ -1,1 +1,13 @@
-<p>users works!</p>
+<div class="container" >
+
+    <div class="card"    *ngFor="let hotel of hotels" >
+      <h5 class="card-header">{{hotel.hotelName}}</h5>
+      <div class="card-body">
+        <p class="card-text">{{hotel.hotelAddr}}</p>
+        <p class="card-text">{{hotel.hotelPhone}}</p>
+        <p class="card-text">{{hotel.hotelPriceCurr}}</p>
+        <p class="card-text">{{hotel.hotelPricePerDay}}</p>
+        <p class="card-text"><small class="text-muted pull-right">Booked</small></p>
+      </div>
+    </div>
+  </div>

@@ -10,7 +10,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { HotelsComponent } from './components/hotels/hotels.component';
 import { UsersComponent } from './components/users/users.component';
@@ -61,18 +61,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC_nEmhoZpJGym0Tz2e-oapv7L-Ts7S5eI',
+      apiKey: 'AIzaSyD9zcvmiqqtmklC0TVns6u_GpJtDytR1-k',
       libraries: ['places']
     }),
     // Import the module into the application, with configuration
     AuthModule.forRoot({
       domain: 'jgsathe.us.auth0.com',
       clientId: 'V27PwwrjJ8sqxSd0wAoBxp4BtOzqJecN',
-      audience: 'https://csci620-team1-ui.azurewebsites.net:3000/dashboard' ,
+      audience: 'https://localhost:3000/dashboard' ,
       httpInterceptor: {
-        allowedList: [`https://csci620-team1-ui.azurewebsites.net:3000/api/*`],
+        allowedList: [`https://csci620-team1-api.azurewebsites.net/api/*`],
       },
-      redirectUri: "https://csci620-team1-ui.azurewebsites.net:4200/hotels"
+      redirectUri: "https://csci620-team1-ui.azurewebsites.net/hotels"
     }),
     
   ],
