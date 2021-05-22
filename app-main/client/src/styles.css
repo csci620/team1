@@ -19,26 +19,27 @@ box-sizing:border-box;
 }
 
 body{
-position: relative;
+  position: relative;
 font-size:14px;
 color: #222222;
 background: rgb(241, 229, 229);
 font-family: 'Poppins', sans-serif;
-max-width:1920px;
-margin:0 auto;
+  max-width:1920px;
+  margin:0 auto;
 overflow-x:hidden;
 
 }
 
 
 
-a {
+a,a:hover,a:active,a:focus {
 
 display:inline-block;
 text-decoration:none;
 font-size:13px;
 padding:0;
-margin:0;
+  margin:0;
+
 }
 
 h2,h3,h4,h5,h6 { 
@@ -172,7 +173,7 @@ opacity: 0;
 
 .main-menu .nav li {
   position:relative;
-  padding: 28px 18px 4px;
+  padding: 28px 13px 4px;
   -webkit-transition:all 0.2s linear;
   -moz-transition:all 0.2s linear;
   -ms-transition:all 0.2s linear;
