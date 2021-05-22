@@ -32,7 +32,7 @@ overflow-x:hidden;
 
 
 
-a,a:hover,a:active,a:focus {
+a{
 
 display:inline-block;
 text-decoration:none;
@@ -173,7 +173,7 @@ opacity: 0;
 
 .main-menu .nav li {
   position:relative;
-  padding: 28px 13px 4px;
+  padding: 28px 18px 4px;
   -webkit-transition:all 0.2s linear;
   -moz-transition:all 0.2s linear;
   -ms-transition:all 0.2s linear;

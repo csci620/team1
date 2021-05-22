@@ -7,7 +7,7 @@ section{
     display: flex;
     justify-content:center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 30vh;
     background : #ffffff;
     background-size:contain;
     animation: animateBg  linear infinite;
@@ -30,7 +30,7 @@ section .loader{
     width: 100px;
     height: 100px;
     align-self: center;
-    left: 225px;
+    left: 90px;
 }
 
 section .loader span{
@@ -69,3 +69,34 @@ section .loader span::before{
     }
 }
 
+.main{
+    background-color: rgb(221, 220, 220);
+}
+
+.topp{
+    background-color: darkgray;
+}
+
+.row{
+    display: block;
+}
+
+.card {
+    background-color:rgb(213, 221, 224)
+}
+
+.profile{
+    width: 80px;
+    height: 80px;
+}
+
+button{
+    background-color:darkgray;
+    border: 3px solid #fdd140;
+    font-size: 16px;
+    color: #000000;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    padding-bottom: 3rem;
+}
