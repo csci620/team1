@@ -1,4 +1,56 @@
+<section>
+  <div class="loader">
+    <div *ngIf="loading else loaded">
+      <span style="--i:1;"></span>
+      <span style="--i:2;"></span>  
+      <span style="--i:3;"></span>
+      <span style="--i:4;"></span>
+      <span style="--i:5;"></span>
+      <span style="--i:6;"></span>
+      <span style="--i:7;"></span>
+      <span style="--i:8;"></span>
+      <span style="--i:9;"></span>
+      <span style="--i:10;"></span>
+      <span style="--i:11;"></span>
+      <span style="--i:12;"></span>
+      <span style="--i:13;"></span>
+      <span style="--i:14;"></span>
+      <span style="--i:15;"></span>
+      <span style="--i:16;"></span>
+      <span style="--i:17;"></span>
+      <span style="--i:18;"></span>
+      <span style="--i:19;"></span>
+      <span style="--i:20;"></span>
+    </div>
+  </div>
 
+  <ng-template #loaded></ng-template>
+    <div ng-controller="my">
+      
+      <div class="container">
+        <div class="row"  *ngFor="let filtered_place of filtered_places; let p = index">    
+          <div class="card" style="max-width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-8">
+                <div *ngFor="let photo of filtered_place.photos">
+                  <a href="/login"><img src="{{photo}}" class="card-img-top"></a>
+                </div>
+                <div class="card-body">  
+                  <h3 class="card-title">{{filtered_place.name}}</h3>
+                  <h4 class="card-text">Review by: {{filtered_place.reviews.author_name}} <img class="profile" src="{{filtered_place.reviews.profile_photo_url}}"></h4>
+                  <h5 class="card-text">Rating: {{filtered_place.reviews.rating}}</h5>
+                  <p class="card-text">{{filtered_place.reviews.text}}</p>
+                  <p class="card-text" id="stars" class="star">                     
+                </div><!--card-body-->
+              </div><!--col-md-8-->
+            </div><!--row-g-->
+          </div><!--card-->
+        </div><!--row-->
+      </div><!--container-->
+    </div>  
+</section>
+
+<!--
 <section>
   <div class="loader">
     <div *ngIf="loading else loaded">
@@ -28,16 +80,16 @@
  <ng-template #loaded></ng-template>
     <div ng-controller="my">
       <table border = "1">
-        <tr>
+        <tr class="topp">
           <th>Name</th>
           <th>Rating</th>
           <th>Photo</th>
           <th>Place</th>
-          <th>Images</th>
+          <th>Reviews</th>
         </tr>
         
         
-        <tr *ngFor="let filtered_place of filtered_places">
+        <tr *ngFor="let filtered_place of filtered_places" class="main">
             <td width=10px>{{filtered_place.reviews.author_name}}</td>
             <td>{{filtered_place.reviews.rating}}</td>
             <td><img src="{{filtered_place.reviews.profile_photo_url}}"></td> 
@@ -53,7 +105,7 @@
         </table>
       </div>
 </section>
- 
+--> 
     <!--
     <table >
       <thead>
@@ -72,5 +124,5 @@
   -->
 
 
-    
+
   
