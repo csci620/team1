@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 });
 
 var whitelist = [
-  'http://localhost:4200'
+  'https://csci620-team1-ui.azurewebsites.net'
   
 ]
 var corsOptions = {
