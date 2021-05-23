@@ -113,7 +113,7 @@ export class YoutubeComponent implements OnInit {
         console.log("data")
         console.log(httpData)
         this.currentWeather = httpData;
-        if(this.currentWeather.weather[0].main=="Clear"){
+       // if(this.currentWeather.weather[0].main=="Clear"){
           console.log("i2-"+i)
           await this.show(obj.place_id,service)
           .then( results => {
@@ -133,7 +133,7 @@ export class YoutubeComponent implements OnInit {
             console.log(status)
           })
           //console.log(obj.id);
-        }
+     //   }
         console.log("dfd")
         this.loading = false;
       }
