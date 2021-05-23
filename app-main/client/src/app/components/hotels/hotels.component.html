@@ -86,7 +86,7 @@
                     </p>
                     <p class="card-text">{{filtered_place.address}}</p>
                     <p class="card-text">{{filtered_place.telephone}}</p>
-                    <form (submit)="addHotels()" >
+                    <!-- <form (submit)="addHotels()" >
                       <input type="hidden" [(ngModel)]="hotel.hotelName"   name="hotelName" value="{{filtered_place.name}}"  class="form-control"/>              
                       <input type="hidden" [(ngModel)]="hotel.hotelAddr"  name="hotelAddr" value="{{filtered_place.address}}"  class="form-control"/>
                       <input type="hidden" [(ngModel)]="hotel.hotelPricePerDay"  name="hotelPricePerDay" class="form-control"/>
@@ -94,7 +94,7 @@
                       <input type="hidden" [(ngModel)]="hotel.hotelPhone"  name="hotelPhone" value="{{filtered_place.telephone}}" class="form-control"/>
                       <input type="hidden" [(ngModel)]="hotel.isBooked"  name="isBooked" class="form-control"/>
                       <input type="submit" value="Save" class="btn btn-success pull-right" />
-                    </form>                       
+                    </form>      -->                 
                 </div><!--card-body-->
               </div><!--col-md-8-->
             </div><!--row-g-->
@@ -102,6 +102,37 @@
         </div><!--row-->
       </div><!--container-->    
     </div><!--controller-->
+  
+  
+  
+  <div class="container">
+    <h3>Insert the data for hotel selected</h3>
+    <form (submit)="addHotels()">
+      <div class="form-group">
+        <label>Hotel Name</label>
+        <input
+          type="text"
+          [(ngModel)]="hotel.hotelName"
+          id="name"
+          name="hotelName"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Hotel Phone</label>
+        <input
+          type="text"
+          [(ngModel)]="hotel.hotelPhone"
+          id="phn"
+          name="hotelPhone"
+          class="form-control"
+        />
+      </div>
+
+      <input type="submit" value="Save" class="btn btn-success" />
+    </form>
+  </div>
 </section>
 
     
