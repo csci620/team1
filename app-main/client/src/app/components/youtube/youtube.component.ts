@@ -134,7 +134,9 @@ export class YoutubeComponent implements OnInit {
           })
           //console.log(obj.id);
      //   }
+        
         console.log("dfd")
+        console.log(this.filtered_places)
         this.loading = false;
       }
       this.filtered_places.forEach(filtered_place=> {
