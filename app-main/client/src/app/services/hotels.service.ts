@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
-const baseUrl = 'https://csci620-team1-api.azurewebsites.net/api/hotels';
+const baseUrl = `${environment.apiUrl}/api/hotels`;
 //const baseUrl = 'http://localhost:3000/api/hotels';
 
 const httpOptions = {

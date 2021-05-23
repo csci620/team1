@@ -29,6 +29,7 @@ import { YoutubeComponent } from './components/youtube/youtube.component';
 import { TourpanelComponent } from './components/tourpanel/tourpanel.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { environment } from './../environments/environment';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       clientId: 'V27PwwrjJ8sqxSd0wAoBxp4BtOzqJecN',
       audience: 'https://localhost:3000/dashboard' ,
       httpInterceptor: {
-        allowedList: [`https://csci620-team1-api.azurewebsites.net/api/*`],
+        allowedList: [`${environment.apiUrl}/api/*`],
       },
       redirectUri: "https://csci620-team1-ui.azurewebsites.net/hotels"
     //redirectUri: "http://localhost:4200/hotels"
