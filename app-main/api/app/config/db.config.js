@@ -1,3 +1,3 @@
 module.exports = {
-    url: "mongodb+srv://wladmin:{process.env.password}@cluster0.1rtjs.mongodb.net/wanderlust"
+    url: "mongodb+srv://wladmin:Wander@620@cluster0.1rtjs.mongodb.net/wanderlust"
 };
