@@ -134,6 +134,7 @@ export class DashboardComponent implements OnInit {
         //console.log(obj.id);
       }
       console.log("dfd")
+      console.log(this.filtered_places)
       this.loading = false;
     }
   }
