@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {MapsAPILoader} from '@agm/core';
 import { AuthService } from '@auth0/auth0-angular';
 import {GoogleMapsAPIWrapper} from '@agm/core';
-import { UsersService} from '../../services/users.service'
 import datepicker from 'js-datepicker'
 
 const apiKey = "f445c5c0ab5fe17b3a86807d237f710c"
@@ -15,7 +14,6 @@ const apiUrl = "https://api.openweathermap.org/data/2.5"
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [UsersService]
 })
 
 export class DashboardComponent implements OnInit {
@@ -41,7 +39,6 @@ export class DashboardComponent implements OnInit {
     private http: HttpClient,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,private router: Router,public auth: AuthService,
-    private userService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +46,6 @@ export class DashboardComponent implements OnInit {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
     });
-    this.addUsers();
   }
 
   wait = true;
@@ -180,94 +176,4 @@ export class DashboardComponent implements OnInit {
     })
   })  
 }
-
-
-user = {
-  userId: "",
-  join_date: ""
-
-}
-
-addUsers(): void {
-console.log(" in addUser()");
-const userData = {
-userId: this.user.userId,
-join_date: this.user.join_date
-
-}
-
-this.userService.create(userData).subscribe(
-response => {
-console.log(response);
-// this.isBooked = true;
-console.log("Users :  User save in  in database " );
-this.users.push(response);
-
-
-},
-error => {
-console.log(error);
-});
-}
-
-userData(): void {
-this.userService.getUsers()
-.subscribe(
-data => {
-
-this.user =    data;
-
-console.log(data);
-},
-error => {
-console.log(error);
-});
-}
-
-
-deleteAll(): void {
-this.userService.deleteAll()
-.subscribe(
-hotel => {
-
-console.log(hotel);
-
-},
-error => {
-console.log(error);
-});
-}
-
-deleteHotel(ind): void {
-this.userService.delete(ind)
-.subscribe(
-response => {
-console.log(response);
-
-/*for (let val = this.hotels.length; val >=0; val--) {
-  if (this.isChecked[val]) {
-    this.hotels.splice(val, 1);
-    delete this.isChecked[val];
-  }
-} */
-},
-error => {
-console.log(error);
-});
-}
-
-
-updateHotel(ind, data): void {
-this.userService.update(ind, data)
-.subscribe(
-response => {
-console.log(response);
-
-},
-error => {
-console.log(error);
-});
-}
-
-
 }
