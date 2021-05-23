@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
       console.log("data")
       console.log(httpData)
       this.currentWeather = httpData;
-      if(this.currentWeather.weather[0].main=="Clear"||this.currentWeather.weather[0].main=="Clouds"){
+     // if(this.currentWeather.weather[0].main=="Clear"||this.currentWeather.weather[0].main=="Clouds"){
         console.log("i2-"+i)
         await this.show(obj.place_id,service)
         .then( results => {
@@ -132,7 +132,7 @@ export class DashboardComponent implements OnInit {
           console.log(status)
         })
         //console.log(obj.id);
-      }
+     // }
       console.log("dfd")
       console.log(this.filtered_places)
       this.loading = false;
