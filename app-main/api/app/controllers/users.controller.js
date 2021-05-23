@@ -12,16 +12,18 @@ exports.create = (req, res) => {
   });
 
   let authToken = req.user.sub;
-  User.findOne({  "userId": authToken }, function (err, count) {
-    console.log(" user count => " + count);
-    if (count === null || count == 0) {
+console.log("HERE I AM ");
+  if (!User.findOne({  _id: authToken })) {
+    
+    
+
      
       console.log(" creating user in databse...")
       // Create a user in db
       const users = new User({
         userId: authToken,
-        join_date: new Date(req.body.join_date),
-      });
+        join_date: new Date(),
+      }); 
 
       // Save User in the database
       users
@@ -38,9 +40,9 @@ exports.create = (req, res) => {
     }  else {
        console.log(" user exists in database ");
     //res.status(400).send({ message: "Content can not be empty!" });
-    return;
+    return; 
    }
-  });
+ 
 };
 
   exports.findAll = (req, res) => {

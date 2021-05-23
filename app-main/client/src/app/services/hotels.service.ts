@@ -4,11 +4,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 
 const baseUrl = 'https://csci620-team1-api.azurewebsites.net/api/hotels';
+//const baseUrl = 'http://localhost:3000/api/hotels';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
-   "Access-Control-Allow-Headers": "*",
+   "Access-Control-Allow-Headers": '*',
    'Access-Control-Allow-Method':'*',
   })
 };
@@ -31,7 +32,7 @@ export class HotelsService {
 
   create(data): Observable<any> {
 
-    console.log(" in here");
+    
     return this.http.post(baseUrl, data, httpOptions);
     //.pipe(map((response: Response) => response.json());
    

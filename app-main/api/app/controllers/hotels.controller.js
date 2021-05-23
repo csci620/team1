@@ -8,14 +8,9 @@ exports.create = (req, res) => {
     console.log("REQUEST TOKEN AFTER DECODE => " + JSON.stringify(req.user)); 
     let authToken = req.user.sub;
     console.log("hotel phone => " + authToken);
-    User.findOne({ "userId": authToken }, function (err, count) {
+   // if (User.findOne({  _id: authToken })) {
 
-      console.log("hotel for user count  => " + count);
-      if (count === undefined) {
-        res.send({"message": "invalid user"});
-        
-      }
-      if (count >= 0 ) {
+     
 
       
       
@@ -50,10 +45,10 @@ exports.create = (req, res) => {
         });
       });
 
-      } else {
+     // } else {
         console.log("user is not a member!")
-      }
-     });
+    //  }
+    
    
   };
 

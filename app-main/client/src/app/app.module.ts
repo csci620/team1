@@ -10,7 +10,7 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { JwtModule } from '@auth0/angular-jwt';
+
 
 import { HotelsComponent } from './components/hotels/hotels.component';
 import { UsersComponent } from './components/users/users.component';
@@ -61,7 +61,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDQrwbj3UjBHsWmuqJEyQqYOYue2R0qHD0',
+      apiKey: 'AIzaSyD9zcvmiqqtmklC0TVns6u_GpJtDytR1-k',
       libraries: ['places']
     }),
     // Import the module into the application, with configuration
@@ -73,6 +73,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         allowedList: [`https://csci620-team1-api.azurewebsites.net/api/*`],
       },
       redirectUri: "https://csci620-team1-ui.azurewebsites.net/hotels"
+    //redirectUri: "http://localhost:4200/hotels"
     }),
     
   ],

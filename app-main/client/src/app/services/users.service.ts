@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 
 const baseUrl = 'https://csci620-team1-api.azurewebsites.net/api/users';
+//const baseUrl = 'http://localhost:3000/api/users';
 
 const httpOptions = {
   headers: new HttpHeaders({ 

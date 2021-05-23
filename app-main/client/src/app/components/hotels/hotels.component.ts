@@ -25,7 +25,7 @@ const apiUrl = "https://api.openweathermap.org/data/2.5"
 
 export class HotelsComponent implements OnInit {
 
-
+  
   userForm: FormGroup;
   
    message: String;
@@ -42,11 +42,13 @@ export class HotelsComponent implements OnInit {
   currentWeather: any = <any>{};
   loading = true;
   max = [0,1,2,3,4,5];
+  hotels: Array<any>;
 
- 
+  
 
   private geoCoder;
-   hotel= {
+  
+   hotel=  {
     
     hotelName: '',
     hotelAddr: '',
@@ -56,32 +58,33 @@ export class HotelsComponent implements OnInit {
     hotelEmail: '',
     isBooked: false
    };
-   hotels: any = <any>[];
+  
 
   constructor(private hotelService: HotelsService, private http: HttpClient,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, public auth: AuthService, private fb : FormBuilder) {
-    
-   }
-
-  ngOnInit(): void {
-    this.message = "";
-   
-    
-      this.mapsAPILoader.load().then(() => {
+     this.mapsAPILoader.load().then(() => {
     
         this.setCurrentLocation();
         this.geoCoder = new google.maps.Geocoder;
       });
     
+   }
+
+  ngOnInit(): void {
+    this.message = "";
+  
+    
+     
    
 
    
   }
 
+  public filtered_place:any = {};
+
   addHotels(): void {
-   
-    console.log(" data hotelname=> " +  this.hotel.hotelName);
+    console.log("hotel name => " + this.hotel.hotelName)
     const newHotel = {
       hotelName: this.hotel.hotelName,
       hotelAddr: this.hotel.hotelAddr,
@@ -96,15 +99,9 @@ export class HotelsComponent implements OnInit {
     this.hotelService.create(newHotel).subscribe(
       response => {
         console.log(response);
-
-       /* if (response.message !== undefined ) {
-          this.message = "Select destination on Dashboard!!";
-          window.alert('Geocoder failed due to: ' + this.message);
-          return;
-        } */
        // this.isBooked = true;
         console.log("hotel :  saved in database " );
-        this.hotels.push(response);
+      //  this.hotels.push(response);
         
         this.hotelService.getHotels()
         .subscribe(
@@ -123,29 +120,21 @@ export class HotelsComponent implements OnInit {
       });
   }
 
+
    getHotels(): void {
     this.hotelService.getHotels()
       .subscribe(
         data => {
-          console.log(JSON.stringify(data));
-          console.log(" message UI => " + data.message)
-          if (data.message !== undefined && data.message == "No data") {
-            this.message = "No Data";
-            console.log("No hotels selected by user");
-            this.mapsAPILoader.load().then(() => {
-    
-              this.setCurrentLocation();
-              this.geoCoder = new google.maps.Geocoder;
-            });
-            return;
-          }
+         // console.log(JSON.stringify(data));
+         // console.log(" message UI => " + data.message)
+          
 
           this.message = "booked";
           data.hotelPriceCurr = "USD";
           data.hotelPricePerDay=Math.floor((Math.random() * 100) + 1);
           this.hotels =    data;
          
-          console.log(data);
+          //console.log(data);
         },
         error => {
           console.log(error);
@@ -197,6 +186,11 @@ export class HotelsComponent implements OnInit {
           console.log(error);
         });
   }
+
+  
+
+
+ 
 
 
 

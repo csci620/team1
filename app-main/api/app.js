@@ -55,11 +55,14 @@ algorithms: ['RS256']
 app.use(jwtCheck);
 
 
-app.use(cors());
+
+
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
+  
   
   if(req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', '*');
@@ -68,6 +71,26 @@ app.use((req, res, next) => {
   next();
  
 });
+
+var whitelist = [
+  'http://localhost:4200'
+  
+]
+var corsOptions = {
+  origin: function (origin, callback) {
+    console.log( "origin-"+origin);
+    if (whitelist.indexOf(origin) !== -1) {
+      console.log("inside whitelist origin");
+      callback(null, true)
+    } else {
+      callback(new Error(`Origin: ${origin} is not allowed by CORS`))
+    }
+  }
+}
+ 
+
+
+app.use(cors(corsOptions));
 
 
 //app.use('/hotels', hotelRoute );
