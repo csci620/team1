@@ -5,12 +5,11 @@ module.exports = mongoose => {
         {
           userId: String,
           hotelName: String,
-          hotelAddr: String,
-          hotelPricePerDay: String,
-          hotelPriceCurr: String,
-          hotelPhone: Number,
-          hotelEmail: String,
-          isBooked: Boolean
+          checkIn: String,
+          checkOut: String,
+          duration: String,
+          members: String,
+         
         },
         { timestamps: true }
       )

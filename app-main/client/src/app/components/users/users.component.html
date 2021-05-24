@@ -4,10 +4,11 @@
      <div class="card"    *ngFor="let hotel of hotels" >
        <h5 class="card-header">{{hotel.hotelName}}</h5>
        <div class="card-body">
-         <p class="card-text">{{hotel.hotelAddr}}</p>
-         <p class="card-text">{{hotel.hotelPhone}}</p>
-         <p class="card-text">{{hotel.hotelPriceCurr}}</p>
-         <p class="card-text">{{hotel.hotelPricePerDay}}</p>
+         <p class="card-text">Occupants : {{hotel.members}}</p>
+         <p class="card-text">Check In: {{hotel.checkIn | date: 'MM-dd-YYYY'}}</p>
+         <p class="card-text">Check out: {{hotel.checkOut | date: 'MM-dd-YYYY'}}</p>
+         <p class="card-text">Duration: {{hotel.duration}}</p>
+         <p class="card-text">Members: {{hotel.members}}</p>
          
          <button class="btn btn-warning pull-right" (click)="deleteHotel(hotel._id)">Delete</button> &nbsp;&nbsp;  <button class="btn btn-success pull-right" (click)="updateHotel(hotel._id, hotel)">Update</button>  
        </div>

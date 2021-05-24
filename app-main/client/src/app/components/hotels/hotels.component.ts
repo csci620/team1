@@ -187,6 +187,9 @@ export class HotelsComponent implements OnInit {
         });
   }
 
+
+  
+
   
 
 
@@ -354,6 +357,8 @@ export class HotelsComponent implements OnInit {
     })
   })  
 }
+
+
 
 
 }

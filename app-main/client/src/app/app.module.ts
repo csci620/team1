@@ -62,6 +62,7 @@ import { environment } from './../environments/environment';
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     AgmCoreModule.forRoot({
+
       apiKey: 'AIzaSyDQrwbj3UjBHsWmuqJEyQqYOYue2R0qHD0',
       libraries: ['places']
     }),

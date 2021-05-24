@@ -86,6 +86,8 @@
                     </p>
                     <p class="card-text">{{filtered_place.address}}</p>
                     <p class="card-text">{{filtered_place.telephone}}</p>
+                    <a class="btn btn-primary" href="/tour" role="button">Reserve</a>
+                    
                     <!-- <form (submit)="addHotels()" >
                       <input type="hidden" [(ngModel)]="hotel.hotelName"   name="hotelName" value="{{filtered_place.name}}"  class="form-control"/>              
                       <input type="hidden" [(ngModel)]="hotel.hotelAddr"  name="hotelAddr" value="{{filtered_place.address}}"  class="form-control"/>
@@ -106,7 +108,8 @@
   
   
   <div class="container">
-    <h3>Insert the data for hotel selected</h3>
+    
+    <h3>Hotel Review</h3>
     <form (submit)="addHotels()">
       <div class="form-group">
         <label>Hotel Name</label>
@@ -120,7 +123,7 @@
       </div>
 
       <div class="form-group">
-        <label>Hotel Phone</label>
+        <label>Hotel Rating out of 10</label>
         <input
           type="text"
           [(ngModel)]="hotel.hotelPhone"
@@ -129,6 +132,7 @@
           class="form-control"
         />
       </div>
+      
 
       <input type="submit" value="Save" class="btn btn-success" />
     </form>

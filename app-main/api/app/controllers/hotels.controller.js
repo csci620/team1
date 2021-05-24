@@ -21,17 +21,16 @@ exports.create = (req, res) => {
 
       userId: req.user.sub,
       hotelName: req.body.hotelName,
-      hotelAddr: req.body.hotelAddr,
-      hotelPricePerDay: req.body.hotelPricePerDay,
-      hotelPriceCurr: req.body.hotelPriceCurr,
-      hotelPhone: parseInt(req.body.hotelPhone),
-      hotelEmail: req.body.hotelEmail,
-      isBooked: req.body.isBooked ? req.body.isBooked : false
+      checkIn: req.body.checkIn,
+      checkOut: req.body.checkOut,
+      duration: (req.body.duration),
+      members: ( req.body.members)
+      
       
     });
-
+    console.log("HOTEL DATA  => " + JSON.stringify(hotel)); 
     // Save Hotel in the database
-    console.log("hotel curr => " + hotel.hotelPriceCurr);
+    
     hotel
       .save(hotel)
       .then(data => {

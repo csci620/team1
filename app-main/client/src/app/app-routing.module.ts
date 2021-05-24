@@ -11,6 +11,7 @@ import {WanderlustComponent} from './components/wanderlust/wanderlust.component'
 import {YoutubeComponent} from './components/youtube/youtube.component'
 import { AuthGuard } from '@auth0/auth0-angular';
 import { UsersComponent } from './components/users/users.component';
+import {TourpanelComponent} from './components/tourpanel/tourpanel.component';
 const routes: Routes = [ 
 //{ path: 'home', component: HomeComponent},
 //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,7 +21,7 @@ const routes: Routes = [
 { path: 'login', component: LoginButtonComponent, canActivate: [AuthGuard] },
 { path: 'logout', component: LogoutButtonComponent },
 { path: 'account',component:UsersComponent,  canActivate: [AuthGuard]},
-{ path: 'flight', component: FlightsComponent,  canActivate: [AuthGuard]},
+{ path: 'tour', component: TourpanelComponent,  canActivate: [AuthGuard]},
 { path: 'wanderlust', component:WanderlustComponent,  canActivate: [AuthGuard]},
 { path: 'vlog',component:YoutubeComponent,  canActivate: [AuthGuard]}
 

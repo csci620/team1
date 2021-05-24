@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://csci620-team1-api.azurewebsites.net'
+ //apiUrl: 'http://localhost:3000'
 };
 
 /*

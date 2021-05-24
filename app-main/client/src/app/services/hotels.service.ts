@@ -54,6 +54,8 @@ export class HotelsService {
   findByHotelName(name): Observable<any> {
     return this.http.get(`${baseUrl}?name=${name}`, httpOptions);
   }
+
+  
 }
 
 

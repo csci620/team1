@@ -76,9 +76,7 @@ export class UsersComponent implements OnInit {
           console.log(JSON.stringify(data));
        
 
-          this.message = "booked";
-          data.hotelPriceCurr = "USD";
-          data.hotelPricePerDay=Math.floor((Math.random() * 100) + 1);
+          
           this.hotels =    data;
          
           console.log(data);

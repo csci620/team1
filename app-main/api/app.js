@@ -73,14 +73,15 @@ app.use((req, res, next) => {
 });
 
 var whitelist = [
-  'https://csci620-team1-ui.azurewebsites.net/*'
+  'https://csci620-team1-ui.azurewebsites.net',
+  'http://localhost:4200'
   
 ]
 var corsOptions = {
   origin: function (origin, callback) {
-    console.log( "origin-"+origin);
+   // console.log( "origin-"+origin);
     if (whitelist.indexOf(origin) !== -1) {
-      console.log("inside whitelist origin");
+      //console.log("inside whitelist origin");
       callback(null, true)
     } else {
       callback(new Error(`Origin: ${origin} is not allowed by CORS`))

@@ -1,3 +1,4 @@
+
 <section  class="travel-box">
     <div class="container">
       <div class="row">
@@ -6,19 +7,19 @@
             <div id="desc-tabs" class="desc-tabs">
   
           <ul class="nav nav-tabs" role="tablist">
-  
+            
             <li role="presentation" class="active">
-               <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab" class="show active">
-                 <i class="fa fa-tree"></i>
-                 tours
-               </a>
-            </li>
-  
-            <li role="presentation">
-              <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">
+              <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab" class="show active">
                 <i class="fa fa-building"></i>
                 hotels
               </a>
+            </li>
+
+            <li role="presentation"  >
+               <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab"  >
+                 <i class="fa fa-tree"></i>
+                 tours
+               </a>
             </li>
   
             <li role="presentation">
@@ -31,8 +32,10 @@
   
           <!-- Tab panes -->
           <div class="tab-content">
-  
-            <div role="tabpanel" class="tab-pane active show active" id="tours">
+            
+            <h2>&nbsp;&nbsp;Select hotels of your choice!</h2>
+          
+            <div role="tabpanel" class="tab-pane fade in" id="tours">
               <div class="tab-para">
   
                 <div class="row">
@@ -156,7 +159,7 @@
                   </div><!--/.col-->
                   <div class="clo-sm-7">
                     <div class="about-btn travel-mrt-0 pull-right">
-                      <button  class="about-view travel-btn">
+                      <button  class="about-view travel-btn" >
                         search	
                       </button><!--/.travel-btn-->
                     </div><!--/.about-btn-->
@@ -168,8 +171,11 @@
   
             </div><!--/.tabpannel-->
   
-            <div role="tabpanel" class="tab-pane fade in" id="hotels">
+            <div role="tabpanel" class="tab-pane active show active" id="hotels">
               <div class="tab-para">
+                <form (submit)="submitData()">
+
+               
   
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-12">
@@ -178,28 +184,18 @@
                       <h2>destination</h2>
   
                       <div class="travel-select-icon">
-                        <select class="form-control ">
-  
-                            <option value="default">enter your destination country</option><!-- /.option-->
-  
-                            <option value="turkey">turkey</option><!-- /.option-->
-  
-                            <option value="russia">russia</option><!-- /.option-->
-                            <option value="egept">egypt</option><!-- /.option-->
-  
-                        </select><!-- /.select-->
-                      </div><!-- /.travel-select-icon -->
-  
-                      <div class="travel-select-icon">
-                        <select class="form-control ">
-  
-                            <option value="default">enter your destination location</option><!-- /.option-->
-  
-                            <option value="istambul">istambul</option><!-- /.option-->
-  
-                            <option value="mosko">mosko</option><!-- /.option-->
-                            <option value="cairo">cairo</option><!-- /.option-->
-  
+
+                       
+                        <select class="form-control" name="hotelNameOpt" [(ngModel)]="hotel.hotelNameOpt">
+                          <option  [ngValue]="0">enter your destination country</option><!-- /.option-->
+                          
+                          
+                              
+                              <option  *ngFor="let hotel of filtered_places" [ngValue]="hotel.name">{{hotel.name}}</option><!-- /.option-->
+                            
+                            
+    
+                            
                         </select><!-- /.select-->
                       </div><!-- /.travel-select-icon -->
   
@@ -211,7 +207,7 @@
                       <h2>check in</h2>
                       <div class="travel-check-icon">
                         <form action="#">
-                          <input type="text" name="check_in" class="form-control" bsDatepicker data-toggle="datepicker" placeholder="12 -01 - 2017 ">
+                          <input type="text" name="checkIn" [(ngModel)]="hotel.checkIn" class="form-control" bsDatepicker data-toggle="datepicker" placeholder="01/02/2001 ">
                         </form>
                       </div><!-- /.travel-check-icon -->
                     </div><!--/.single-tab-select-box-->
@@ -222,7 +218,7 @@
                       <h2>check out</h2>
                       <div class="travel-check-icon">
                         <form action="#">
-                          <input type="text" name="check_out" class="form-control" bsDatepicker  data-toggle="datepicker" placeholder="22 -01 - 2017 ">
+                          <input type="text" name="checkOut" [(ngModel)]="hotel.checkOut" class="form-control" bsDatepicker  data-toggle="datepicker" placeholder="01/02/2001 ">
                         </form>
                       </div><!-- /.travel-check-icon -->
                     </div><!--/.single-tab-select-box-->
@@ -232,7 +228,7 @@
                     <div class="single-tab-select-box">
                       <h2>duration</h2>
                       <div class="travel-select-icon">
-                        <select class="form-control ">
+                        <select class="form-control "  [(ngModel)]="hotel.duration"  name="duration"> 
   
                             <option value="default">5</option><!-- /.option-->
   
@@ -250,7 +246,7 @@
                     <div class="single-tab-select-box">
                       <h2>members</h2>
                       <div class="travel-select-icon">
-                        <select class="form-control ">
+                        <select class="form-control " [(ngModel)]="hotel.members" name="members">
   
                             <option value="default">1</option><!-- /.option-->
   
@@ -270,14 +266,15 @@
                   <div class="col-sm-5"></div><!--/.col-->
                   <div class="clo-sm-7">
                     <div class="about-btn travel-mrt-0 pull-right">
-                      <button  class="about-view travel-btn">
-                        search	
+                      <button  class="about-view travel-btn" type="submit"  >
+                        Reservation	
                       </button><!--/.travel-btn-->
                     </div><!--/.about-btn-->
                   </div><!--/.col-->
   
                 </div><!--/.row-->
-  
+              </form>
+              
               </div><!--/.tab-para-->
   
             </div><!--/.tabpannel-->
@@ -443,3 +440,4 @@
         </div><!--/.col-->
       </div><!--/.row-->
   
+     
