@@ -72,3 +72,8 @@ section .loader span::before{
 .container{
     margin-top: 0px;
 }
+
+..head{
+    font-size: 3rem;
+    padding-left:5cm;
+}
